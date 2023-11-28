@@ -1,16 +1,16 @@
-
+"use client";
 
 import React from "react";
-import { Spacer, Input } from "@nextui-org/react";
-import PasswordBox from "./PasswordBox";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
-    
+    const router = useRouter();
 
-    return <div className="flex flex-col items-center justify-center text-center gap-5">
-       <Spacer y={20}/>
-       <h1 className="text-2xl  mb-8">Landlord Login</h1>
-       <Input label="Email" placeholder="Enter your email" className="w-[400px]"/>
-       <PasswordBox  />
+    useEffect(() => {
+        router.push("/Login/WhoAreYou");
+    })
+
+    return <div>
     </div>;
 }
