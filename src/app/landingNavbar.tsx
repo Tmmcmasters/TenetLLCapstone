@@ -10,7 +10,7 @@ export default function NavbarComponent() {
 
     return (
     <Navbar>
-        <NavbarBrand>
+        <NavbarBrand >
             <p className=' text-3xl'>TicketPro</p>
         </NavbarBrand>
         <NavbarContent justify='end'>
