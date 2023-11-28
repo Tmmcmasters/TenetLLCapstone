@@ -11,14 +11,14 @@ export default function NavbarComponent() {
     return (
     <Navbar>
         <NavbarBrand >
-            <p className=' text-3xl'>TicketPro</p>
+            <a className=' text-3xl' href='/'>TicketPro</a>
         </NavbarBrand>
         <NavbarContent justify='end'>
                 <NavbarItem>
-                    <Button as={Link} href='#' color='primary' variant='flat'>Login</Button>
+                    <Button as={Link} href='/Login/WhoAreYou' color='primary' variant='flat'>Login</Button>
                 </NavbarItem>
                 <NavbarItem>
-                    <Button as={Link} href='#' color='success' variant='bordered'>Sign Up</Button>
+                    <Button as={Link} href='/SignUp/WhoAreYou' color='success' variant='bordered'>Sign Up</Button>
                 </NavbarItem>
             </NavbarContent>
     </Navbar>

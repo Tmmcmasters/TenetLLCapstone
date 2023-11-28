@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Spacer } from "@nextui-org/react";
+import { Button, Spacer, Link } from "@nextui-org/react";
 
 export default function LandingContent() {
     return (
@@ -11,7 +11,7 @@ export default function LandingContent() {
                 The <span className="font-bold underline text-primary">Ultimate</span> Ticket System for Landlords and Tenants
             </h3>
             <div className="mt-8 flex">
-                <Button color="success" variant="ghost">
+                <Button color="success" variant="ghost" as={Link} href="/SignUp/WhoAreYou">
                     Get Started
                 </Button>
                 <Spacer x={5} />
