@@ -6,7 +6,7 @@ export default function TenetLogin() {
     return <div className="flex flex-col items-center justify-center text-center gap-5">
         <Spacer y={20} />
         <h1 className="text-3xl font-semibold  mb-8">Tenet Login</h1>
-        <Input label="Email" placeholder="Enter your email" className="w-[400px]" type="email" variant="bordered" />
+        <Input label="Email" placeholder="Enter your email" className="w-[400px]" type="email" variant="bordered" isRequired={true} />
         <PasswordBox />
         <div className="flex flex-row justify-between w-[400px]">
             <Button color="warning" size="lg" className="w-fill" variant="ghost">
