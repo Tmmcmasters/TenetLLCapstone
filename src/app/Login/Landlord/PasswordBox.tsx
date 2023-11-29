@@ -13,7 +13,8 @@ export default function PasswordBox() {
     return (
         <Input
       label="Password"
-      variant="flat"
+      variant="bordered"
+      isRequired={true}
       placeholder="Enter your password"
       endContent={
         <button className="focus:outline-none" type="button" onClick={toggleVisibility}>

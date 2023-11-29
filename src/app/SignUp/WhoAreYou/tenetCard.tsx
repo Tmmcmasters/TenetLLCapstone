@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import {Card, CardHeader, CardBody, CardFooter, Button, Image, Spacer}from "@nextui-org/react"
 
@@ -14,7 +16,7 @@ export default function TenetCard() {
                 />
             </CardBody>
             <CardFooter className="justify-center">
-                <Button color="primary" size="md" className="w-fill" variant="ghost">
+                <Button color="primary" size="md" className="w-fill" variant="ghost" onClick={() => {window.location.href = "/SignUp/Confirmation"}}>
                     I am a Tenant!
                 </Button>
             </CardFooter>
