@@ -20,8 +20,8 @@ export default function LandingContent() {
                 </Button>
             </div>
             <Spacer y={32} />
-            <div className="flex flex-row flex-wrap gap-5">
-                <Card className="min-w-[400px] w-[25vw]">
+            <div className="flex flex-row flex-wrap gap-5 justify-center">
+                <Card className="min-w-[300px] w-[25vw]">
                     <CardHeader className="font-bold text-lg">
                         Custom Invite Codes
                     </CardHeader>
@@ -33,7 +33,7 @@ export default function LandingContent() {
                     </CardFooter>
                 </Card>
 
-                <Card className="min-w-[400px] w-[25vw]">
+                <Card className="min-w-[300px] w-[25vw]">
                     <CardHeader className="font-bold text-lg">
                         Track Complexes and Apartments
                     </CardHeader>
@@ -45,7 +45,7 @@ export default function LandingContent() {
                     </CardFooter>
                 </Card>
 
-                <Card className="min-w-[400px] w-[25vw]">
+                <Card className="min-w-[300px] w-[25vw]">
                     <CardHeader className="font-bold text-lg">
                         Track Apartments and Tenets
                     </CardHeader>

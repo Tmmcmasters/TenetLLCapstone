@@ -15,7 +15,7 @@ export default function Home() {
         <LandingContent />
     </main>
 
-    <footer className=" flex flex-col items-center justify-center bottom-">
+    <footer className=" flex flex-col items-center justify-center bottom-0 ">
       <span className="font-default text-sm">
         © 2023 TicketPro. All rights reserved.
       </span>
