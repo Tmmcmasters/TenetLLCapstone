@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import {Card, CardHeader, CardBody, CardFooter, Button, Image} from "@nextui-org/react"
 
@@ -14,7 +15,7 @@ export default function LandlordCard() {
                 />
             </CardBody>
             <CardFooter className="justify-center">
-                <Button color="primary" size="md" className="w-fill" variant="ghost">
+                <Button color="primary" size="md" className="w-fill" variant="ghost" onClick={() => {window.location.href = "/SignUp/Landlord"}}>
                     I am a LandLord!
                 </Button>
             </CardFooter>
