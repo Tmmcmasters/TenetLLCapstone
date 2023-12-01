@@ -10,6 +10,9 @@ export default function NotificationBar () {
             <div className="flex flex-col items-center justify-start text-center w-full h-full overflow-auto gap-5 pt-5">
                 <NotificationCard />
                 <NotificationCard />
+                <NotificationCard />
+                <NotificationCard />
+                <NotificationCard />
             </div>
     </div>
     )
