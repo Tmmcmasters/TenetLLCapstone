@@ -20,10 +20,6 @@ export default function RootLayout({
     <html lang="en" className='dark'>
       <body className={inter.className} >
         <Providers>
-          <header className='w-full'>
-            <NavbarComponent />
-          </header>
-
           {children}
         </Providers>
         </body>
