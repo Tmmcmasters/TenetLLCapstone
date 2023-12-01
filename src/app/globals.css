@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -17,6 +19,7 @@
 }
 
 body {
+
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,4 +27,36 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+
+
+
+/* Customize scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Add a gradient effect to the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#1a1a1a, #383838);
+}
+
+/* Change the scrollbar width and height on hover */
+::-webkit-scrollbar-thumb:hover {
+  width: 12px;
+  height: 12px;
 }
