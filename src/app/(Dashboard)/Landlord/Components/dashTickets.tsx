@@ -8,7 +8,7 @@ export default function DashboardTickets() {
             <div className="border border-b-0 border-t-0 border-s-0 border-r-0 w-full h-[5vh] items-center justify-center flex flex-col text-center">
                 <h1 className="text-3xl font-semibold self-center">Your Tickets</h1>
             </div>
-                <div className="flex flex-row flex-wrap items-start justify-start text-center w-full h-full overflow-auto gap-5 pt-5 pb-5 pl-3">
+                <div className="flex flex-row flex-wrap items-start align-top  justify-center text-center w-full h-full overflow-auto gap-5 pt-5 pb-5 pl-3">
                     <DashboardTicketCard />
                     <DashboardTicketCard />
                     <DashboardTicketCard />

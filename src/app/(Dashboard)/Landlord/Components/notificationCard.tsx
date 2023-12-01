@@ -4,7 +4,7 @@ export default function NotificationCard () {
 
     return (
         <div className="w-[95%]">
-            <Card isHoverable={true} isPressable={true} className="w-full">
+            <Card isHoverable={false} isPressable={true} className="w-full">
                 <CardHeader className="flex justify-between h-[4vh]">
                     <h1>Title</h1>
                     <Link isBlock={true} underline="always">Request</Link>
