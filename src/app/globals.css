@@ -33,16 +33,16 @@ body {
 
 /* Customize scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #888;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -51,7 +51,7 @@ body {
 
 /* Add a gradient effect to the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#888, #555);
+  background: linear-gradient(#1a1a1a, #383838);
 }
 
 /* Change the scrollbar width and height on hover */

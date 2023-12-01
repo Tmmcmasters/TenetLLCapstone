@@ -4,7 +4,7 @@ import DashTicketCardStatus from "./dashTicketCardStatusDropdown";
 
 export default function DashboardTicketCard() {
     return (
-        <div className="w-[23vw] ">
+        <div className="w-[23vw] ml-10 mb-5">
             <Card className="min-w-[300px]">
                 <CardHeader className="h-[4rem] flex flex-col justify-start justify-items-start items-start ">
                     <div className="flex-row flex justify-between items-center w-full">
