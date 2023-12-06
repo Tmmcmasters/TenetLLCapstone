@@ -1,0 +1,135 @@
+const columns = [
+    {
+        key: "id",
+        name: "ID",
+        sortable: true,
+    },
+    {
+        key: "name",
+        name: "NAME",
+        sortable: true,
+    },
+    {
+        key: "address",
+        name: "ADDRESS",
+        sortable: true,
+    },
+    {
+        key: "description",
+        name: "DESCRIPTION",
+        sortable: true,
+    },
+    {
+        key: "actions",
+        name: "ACTIONS",
+    }
+]
+
+const rows = [
+    {
+        id: 1,
+        name: "Nice House",
+        address: "123 Main St",
+        description: "A beautiful house with 3 bedrooms and 2 bathrooms",
+        createdAt: "2022-01-01",
+        modifiedAt: "2022-02-01",
+    },
+    {
+        id: 2,
+        name: "Nice Villa",
+        address: "456 Maple Ave",
+        description: "A luxurious villa with a swimming pool and garden",
+        createdAt: "2022-01-15",
+        modifiedAt: "2022-02-15",
+    },
+    {
+        id: 3,
+        name: "Cozy Apartment",
+        address: "789 Oak Dr",
+        description: "A cozy apartment in the city center with a great view",
+        createdAt: "2022-02-01",
+        modifiedAt: "2022-03-01",
+    },
+    {
+        id: 4,
+        name: "Modern Loft",
+        address: "987 Elm St",
+        description: "A modern loft with an open floor plan and high ceilings",
+        createdAt: "2022-03-01",
+        modifiedAt: "2022-04-01",
+    },
+    {
+        id: 5,
+        name: "Beach House",
+        address: "321 Beach Rd",
+        description: "A beachfront house with stunning ocean views",
+        createdAt: "2022-03-15",
+        modifiedAt: "2022-04-15",
+    },
+    {
+        id: 6,
+        name: "Country Cottage",
+        address: "654 Meadow Ln",
+        description: "A charming cottage surrounded by nature",
+        createdAt: "2022-04-01",
+        modifiedAt: "2022-05-01",
+    },
+    {
+        id: 7,
+        name: "City Penthouse",
+        address: "987 Sky Tower",
+        description: "A luxurious penthouse with panoramic city views",
+        createdAt: "2022-04-15",
+        modifiedAt: "2022-05-15",
+    },
+    {
+        id: 8,
+        name: "Lakefront Cabin",
+        address: "789 Lakeview Dr",
+        description: "A cozy cabin by the lake with a private dock",
+        createdAt: "2022-05-01",
+        modifiedAt: "2022-06-01",
+    },
+    {
+        id: 9,
+        name: "Mountain Retreat",
+        address: "654 Summit Rd",
+        description: "A secluded retreat nestled in the mountains",
+        createdAt: "2022-05-15",
+        modifiedAt: "2022-06-15",
+    },
+    {
+        id: 10,
+        name: "Riverside Bungalow",
+        address: "321 Riverfront Ave",
+        description: "A charming bungalow by the river with a garden",
+        createdAt: "2022-06-01",
+        modifiedAt: "2022-07-01",
+    },
+    {
+        id: 11,
+        name: "Spacious Condo",
+        address: "789 Park Ave",
+        description: "A spacious condo with modern amenities",
+        createdAt: "2022-07-15",
+        modifiedAt: "2022-08-15",
+    },
+    {
+        id: 12,
+        name: "Luxury Mansion",
+        address: "987 Mansion Dr",
+        description: "A luxurious mansion with a private pool and tennis court",
+        createdAt: "2022-08-01",
+        modifiedAt: "2022-09-01",
+    },
+    {
+        id: 13,
+        name: "Historic Villa",
+        address: "654 Heritage Ln",
+        description: "A historic villa with beautiful architecture",
+        createdAt: "2022-08-15",
+        modifiedAt: "2022-09-15",
+    },
+];
+
+export {columns, rows}

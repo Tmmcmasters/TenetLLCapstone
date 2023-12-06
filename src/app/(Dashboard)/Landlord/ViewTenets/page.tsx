@@ -1,3 +1,4 @@
+import TenetsTable from "../Components/Grids/tenetsTable";
 
 
 export default function ViewTenets () {
@@ -5,7 +6,7 @@ export default function ViewTenets () {
 
     return (
         <div className="flex flex-col w-full h-[93vh] justify-center items-center align-middle">
-            View Tenets
+            <TenetsTable />
         </div>
     )
 }

@@ -1,11 +1,12 @@
+import ComplexesTable from "../Components/Grids/complexesTable";
 
 
 export default function ViewComplexes () {
 
 
     return (
-        <div className="flex flex-col w-full h-[93vh] justify-center items-center align-middle">
-            View Complexes
+        <div className="flex flex-col  h-[93vh] justify-center items-center align-middle">
+            <ComplexesTable />
         </div>
     )
 }
