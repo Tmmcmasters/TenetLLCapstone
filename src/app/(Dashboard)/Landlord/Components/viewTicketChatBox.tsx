@@ -10,10 +10,25 @@ export default function TicketChatBox () {
             <div className="w-full h-[5vh] items-center justify-center flex flex-col text-center border-b-2 border-gray-600">
                 <h1 className="text-3xl font-semibold  font-size">Chat</h1>
             </div>
-            <div className="flex flex-col h-full w-full justify-end align-bottom">
+            <div className="flex flex-col h-full m-0  w-full overflow-auto">
                 <YourChatBubble text="Hi how are you doing!?"/>
                 <TheirChatBubble text="I am doing great, thank you"/>
                 <TheirChatBubble text="What can I do for you today?"/>
+                <YourChatBubble text="Hi how are you doing!?"/>
+                <TheirChatBubble text="I am doing great, thank you"/>
+                <TheirChatBubble text="What can I do for you today?"/>
+                <YourChatBubble text="Hi how are you doing!?"/>
+                <TheirChatBubble text="I am doing great, thank you"/>
+                <TheirChatBubble text="What can I do for you today?"/>
+                <YourChatBubble text="Hi how are you doing!?"/>
+                <TheirChatBubble text="I am doing great, thank you"/>
+                <TheirChatBubble text="What can I do for you today?"/>
+                <YourChatBubble text="Hi how are you doing!?"/>
+                <TheirChatBubble text="I am doing great, thank you"/>
+                <TheirChatBubble text="What can I do for you today?"/>
+                <YourChatBubble text="Hi how are you doing!?"/>
+                <TheirChatBubble text="I am doing great, thank you"/>
+                <YourChatBubble text="What can I do for you today?"/>
             </div>
             <Spacer y={3}/>
             <div className="flex flex-row w-full pl-3 pr-3 gap-3 pb-3 justify-center align-middle">

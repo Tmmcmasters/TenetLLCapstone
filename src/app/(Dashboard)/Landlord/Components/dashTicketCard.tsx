@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardHeader, CardBody, CardFooter, Button, Image, Spacer, Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger }from "@nextui-org/react"
 import DashTicketCardStatus from "./dashTicketCardStatusDropdown";
+import Link from "next/link";
 
 export default function DashboardTicketCard() {
     return (
@@ -19,7 +20,7 @@ export default function DashboardTicketCard() {
                 </CardBody>
                 <CardFooter className="w-full flex flex-row justify-between">
                     <DashTicketCardStatus />
-                    <Button color="success" className="text-medium font-medium" variant="solid">View Ticket</Button>
+                    <Button href="/Landlord/ViewTicket" as={Link} color="success" className="text-medium font-medium" variant="solid">View Ticket</Button>
                 </CardFooter>
             </Card>
         </div>
