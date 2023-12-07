@@ -1,4 +1,4 @@
-import ApartmentTable from "../Components/Grids/apartmentTable";
+import ApartmentTable from "../Components/Grids/(Apartment)/apartmentTable";
 
 
 export default function ViewApartments () {

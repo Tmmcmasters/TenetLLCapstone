@@ -1,4 +1,4 @@
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@nextui-org/react";
+import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@nextui-org/react";
 import { PlusIcon } from "../../Icons/PlusIcon";
 
 
@@ -38,8 +38,12 @@ export default function AddComplexButton () {
                                 variant="bordered"
                                 required
                             />
+                            <div className="flex flex-row justify-start">
+                            <Checkbox size="md">Add Another</Checkbox>
+                            </div>
                         </ModalBody>
                         <ModalFooter className="w-full flex justify-between">
+                            <div >
                                 <Button
                                     size="md"
                                     variant="bordered"
@@ -48,6 +52,8 @@ export default function AddComplexButton () {
                                 >
                                     Cancel
                                 </Button>
+                                </div>
+                                <div className="flex flex-row gap-1">
                                 <Button
                                     size="md"
                                     color="success"
@@ -56,6 +62,7 @@ export default function AddComplexButton () {
                                 >
                                     Save
                                 </Button>
+                                </div>
                         </ModalFooter>
                         </>
                     )
