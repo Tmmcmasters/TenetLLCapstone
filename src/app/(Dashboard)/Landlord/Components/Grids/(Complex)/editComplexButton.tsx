@@ -24,7 +24,7 @@ export default function EditComplexbutton(complexRow: EditComplexbuttonProps) {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                        <ModalHeader className="flex flex-col gap-1" >Add Complex</ModalHeader><ModalBody>
+                        <ModalHeader className="flex flex-col gap-1" >Edit Complex</ModalHeader><ModalBody>
                             <Input
                                 autoFocus
                                 label="Complex Name"
