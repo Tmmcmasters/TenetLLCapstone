@@ -20,8 +20,8 @@ export default function AddApartmentButton () {
                         <ModalHeader className="flex flex-col gap-1">Add Apartment</ModalHeader><ModalBody>
                             <Input
                                 autoFocus
-                                label="Complex Name"
-                                placeholder="Enter complex name"
+                                label="Apartment Name"
+                                placeholder="Enter apartment name"
                                 variant="bordered"
                                 required
                             />
