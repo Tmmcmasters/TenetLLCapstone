@@ -1,18 +1,25 @@
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@nextui-org/react";
-import { PlusIcon } from "../Icons/PlusIcon";
+import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, Tooltip, useDisclosure } from "@nextui-org/react";
+import { EditIcon } from "../../Icons/EditIcon";
+import { Complex } from "../types";
 
+interface EditComplexbuttonProps {
+    complexRow: Complex;
+  }
+export default function EditComplexbutton(complexRow: EditComplexbuttonProps) {
 
-export default function AddComplexButton () {
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
-
+    const {isOpen, onOpen, onOpenChange} = useDisclosure(); 
 
     return (
-        <div className="w-full flex justify-end">
-            <Button className="w-2/8" size="lg" color="success" variant="ghost" endContent={<PlusIcon />} onPress={onOpen}>Add Complex</Button>
-            <Modal
+        <div >
+            <Tooltip content="Edit Complex">
+                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50" onClick={onOpen}>
+                                <EditIcon  />
+                            </span>
+                        </Tooltip>
+                        <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
-                placeholder="center"
+                placement="center"
             >
                 <ModalContent>
                     {(onClose) => (
@@ -23,20 +30,20 @@ export default function AddComplexButton () {
                                 label="Complex Name"
                                 placeholder="Enter complex name"
                                 variant="bordered"
-                                required
+                                value={complexRow.complexRow.name}
                             />
                             <Input
                                 label="Address"
                                 type="address"
                                 placeholder="Enter address"
                                 variant="bordered"
-                                required
+                                value={complexRow.complexRow.address}
                             />
                             <Textarea
                                 label="Description"
                                 placeholder="Enter description"
                                 variant="bordered"
-                                required
+                                value={complexRow.complexRow.description}
                             />
                         </ModalBody>
                         <ModalFooter className="w-full flex justify-between">
@@ -65,5 +72,5 @@ export default function AddComplexButton () {
 
             </Modal>
         </div>
-    )
+    );
 }

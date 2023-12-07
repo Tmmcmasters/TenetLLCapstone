@@ -1,4 +1,4 @@
-import ComplexesTable from "../Components/Grids/complexesTable";
+import ComplexesTable from "../Components/Grids/(Complex)/complexesTable";
 
 
 export default function ViewComplexes () {
