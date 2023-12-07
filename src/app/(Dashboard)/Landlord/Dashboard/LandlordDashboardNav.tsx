@@ -16,6 +16,7 @@ export default function LandlordDashboardNav() {
     const menuItems = [
         "Apartments",
         "Complexes",
+        "Tenets",
         "Logout",
     ]
 
@@ -24,19 +25,24 @@ export default function LandlordDashboardNav() {
             <NavbarContent>
                 <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className='sm:hidden' />
                 <NavbarBrand >
-                    <a className='underline text-3xl' href='/'>TicketPro</a>
+                    <a className='underline text-3xl font-light' href='/Landlord/Dashboard'>TicketPro</a>
                 </NavbarBrand>
             </NavbarContent>
 
-            <NavbarContent justify='center' className='hidden sm:flex gap-4'>
+            <NavbarContent justify='center' className='hidden sm:flex gap-8'>
                 <NavbarItem>
-                    <Link color='foreground'>
+                    <Link href='/Landlord/ViewApartments' color='foreground'>
                         Apartments
                     </Link>
                 </NavbarItem>
                 <NavbarItem>
-                    <Link color='foreground'>
+                    <Link href='/Landlord/ViewComplexes' color='foreground'>
                         Complexes
+                    </Link>
+                </NavbarItem>
+                <NavbarItem>
+                    <Link href='/Landlord/ViewTenets' color='foreground'>
+                        Tenets
                     </Link>
                 </NavbarItem>
             </NavbarContent>
@@ -61,7 +67,7 @@ export default function LandlordDashboardNav() {
             <NavbarMenu>
                 {menuItems.map((item, index) => (
                     <NavbarMenuItem key={index}>
-                        {item === "Logout" ? <DashLogOutPopover /> : <Link color="foreground">{item}</Link>}
+                        {item === "Logout" ? <DashLogOutPopover /> : <Link href={"/Landlord/View" + item} color="foreground">{item}</Link>}
                     </NavbarMenuItem>
                 ))}
             </NavbarMenu>

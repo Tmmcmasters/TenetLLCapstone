@@ -11,7 +11,7 @@ export default function NavbarComponent() {
     return (
     <Navbar>
         <NavbarBrand >
-            <a className='underline text-3xl' href='/'>TicketPro</a>
+            <a className='underline text-3xl font-light' href='/'>TicketPro</a>
         </NavbarBrand>
         <NavbarContent justify='end'>
                 <NavbarItem>
