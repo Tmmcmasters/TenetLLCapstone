@@ -12,7 +12,7 @@ export default function AddComplexButton () {
             <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
-                placeholder="center"
+                placeholder="top-center"
             >
                 <ModalContent>
                     {(onClose) => (

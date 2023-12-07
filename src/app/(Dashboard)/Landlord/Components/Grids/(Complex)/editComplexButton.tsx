@@ -19,12 +19,12 @@ export default function EditComplexbutton(complexRow: EditComplexbuttonProps) {
                         <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
-                placement="center"
+                placement="top-center"
             >
                 <ModalContent>
                     {(onClose) => (
                         <>
-                        <ModalHeader className="flex flex-col gap-1">Add Complex</ModalHeader><ModalBody>
+                        <ModalHeader className="flex flex-col gap-1" >Add Complex</ModalHeader><ModalBody>
                             <Input
                                 autoFocus
                                 label="Complex Name"

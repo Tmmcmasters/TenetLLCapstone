@@ -21,7 +21,7 @@ export default function DeleteComplexButton (complexRow: DeleteComplexButtonProp
                         <Modal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
-                placement="center"
+                placement="top-center"
                 size="xl"
                 >
                     <ModalContent>
