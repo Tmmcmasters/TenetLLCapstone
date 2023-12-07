@@ -19,3 +19,19 @@ export type Apartment = {
     createdAt: string;
     modifiedAt: string;
 }
+
+export type Tenet = {
+    id: number;
+    firstName: string;
+    lastName: string;
+    fullName: string;
+    email: string;
+    phone: string;
+    apartmentId: number;
+    apartmentName: string;
+    complexId: number;
+    complexName: string;
+    address: string;
+    createdAt: string;
+    modifiedAt: string;
+}
