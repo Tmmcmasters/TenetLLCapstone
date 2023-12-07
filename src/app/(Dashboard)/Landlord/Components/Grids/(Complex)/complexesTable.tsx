@@ -12,6 +12,7 @@ import { columns, complexes } from "./complexData";
 import AddComplexButton from "./addComplexButton";
 import EditComplexbutton from "./editComplexButton";
 import { Complex } from "../types";
+import DeleteComplexButton from "./deleteComplexButton";
 
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "address", "description"];
@@ -68,11 +69,7 @@ export default function ComplexesTable() {
                             </span>
                         </Tooltip>
                         <EditComplexbutton complexRow = {item}  />
-                        <Tooltip color="danger" content="Delete Complex">
-                            <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                                <DeleteIcon />
-                            </span>
-                        </Tooltip>
+                        <DeleteComplexButton complexRow = {item} />
                     </div>
                 );
             default:
