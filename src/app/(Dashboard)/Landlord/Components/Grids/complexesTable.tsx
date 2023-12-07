@@ -9,6 +9,7 @@ import { SearchIcon } from "../Icons/SearchIcon";
 import { PlusIcon } from "../Icons/PlusIcon";
 import { capitalize } from "./utils";
 import { columns, complexes } from "./complexData";
+import AddComplexButton from "./addComplexButton";
 
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "address", "description"];
@@ -112,7 +113,7 @@ export default function ComplexesTable() {
                     value={filterValue}
                     onValueChange={(value) => onSearchChange(value)}
                 />
-                <Button className="w-1/4" size="lg" color="success" variant="ghost" endContent={<PlusIcon />}>Add Complex</Button>
+             <AddComplexButton />
             </div>
             <Table aria-label="Complex table with dyamic content" bottomContent={
                 <div className="flex w-full justify-center">
