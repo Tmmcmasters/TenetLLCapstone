@@ -1,4 +1,4 @@
-import TenetsTable from "../Components/Grids/tenetsTable";
+import TenetsTable from "../Components/Grids/(Tenet)/tenetsTable";
 
 
 export default function ViewTenets () {
