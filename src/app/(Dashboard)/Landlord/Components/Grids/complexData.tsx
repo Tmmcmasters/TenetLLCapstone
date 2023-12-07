@@ -25,7 +25,7 @@ const columns = [
     }
 ]
 
-const rows = [
+const complexes = [
     {
         id: 1,
         name: "Nice House",
@@ -130,6 +130,54 @@ const rows = [
         createdAt: "2022-08-15",
         modifiedAt: "2022-09-15",
     },
+    {
+        id: 14,
+        name: "Beachfront House",
+        address: "321 Beach Rd",
+        description: "A modern beachfront house with stunning ocean views",
+        createdAt: "2022-09-01",
+        modifiedAt: "2022-10-01",
+    },
+    {
+        id: 15,
+        name: "Country House",
+        address: "987 Country Rd",
+        description: "A charming country house with a garden and a pool",
+        createdAt: "2022-09-15",
+        modifiedAt: "2022-10-15",
+    },
+    {
+        id: 16,
+        name: "City Apartment",
+        address: "654 City St",
+        description: "A comfortable apartment in the city center",
+        createdAt: "2022-10-01",
+        modifiedAt: "2022-11-01",
+    },
+    {
+        id: 17,
+        name: "Modern House",
+        address: "321 House Ln",
+        description: "A modern house with an open floor plan and high ceilings",
+        createdAt: "2022-10-15",
+        modifiedAt: "2022-11-15",
+    },
+    {
+        id: 18,
+        name: "Beachfront Bungalow",
+        address: "987 Beach Rd",
+        description: "A beachfront bungalow with stunning ocean views",
+        createdAt: "2022-11-01",
+        modifiedAt: "2022-12-01",
+    },
+    {
+        id: 19,
+        name: "City Apartment",
+        address: "654 City St",
+        description: "A comfortable apartment in the city center",
+        createdAt: "2022-11-15",
+        modifiedAt: "2022-12-15",
+    }
 ];
 
-export {columns, rows}
+export {columns, complexes}
