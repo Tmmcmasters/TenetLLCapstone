@@ -12,6 +12,7 @@ export type Complex = {
 export type Apartment = {
     id: number;
     complexId: number;
+    complexName: string;
     name: string;
     address: string;
     description: string;
