@@ -18,7 +18,7 @@ export default function DashboardTicketCard() {
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Amet, alias accusamus rerum eveniet inventore molestias maiores dolorum ex, doloribus beatae officiis explicabo, voluptas quae commodi. Nemo reprehenderit dignissimos voluptatibus enim?</p>
                 </CardBody>
                 <CardFooter className="w-full flex flex-row justify-end">
-                    <Button href="/Landlord/ViewTicket" as={Link} color="success" className="text-medium font-medium" variant="solid">View Ticket</Button>
+                    <Button href="/Tenet/ViewTicket" as={Link} color="success" className="text-medium font-medium" variant="solid">View Ticket</Button>
                 </CardFooter>
             </Card>
         </div>
