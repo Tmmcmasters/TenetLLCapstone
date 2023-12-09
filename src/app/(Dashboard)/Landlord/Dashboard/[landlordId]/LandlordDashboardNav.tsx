@@ -4,11 +4,18 @@ import React from 'react';
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Button, Link, Popover, PopoverTrigger, PopoverContent, Spacer } from "@nextui-org/react";
 
 import { IoNotificationsOutline } from "react-icons/io5";
-import NotificationBar from '../Components/notificationBar';
-import DashLogOutPopover from '../Components/dashLogOutPopover';
+import NotificationBar from '../../Components/notificationBar';
+import DashLogOutPopover from '../../Components/dashLogOutPopover';
 
 
-export default function LandlordDashboardNav() {
+export default function LandlordDashboardNav({
+    params,
+}: {
+    params: {
+        landlordId: number
+        }
+}
+) {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
 

@@ -12,6 +12,8 @@ import { EyeFilledIcon } from "./components/passwordBox/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./components/passwordBox/EyeSlashFilledIcon";
 import { Console } from "console";
 import toast from "react-hot-toast";
+import CreateLandlord from "./landlordController";
+import LandlordDashboardNav from "@/app/(Dashboard)/Landlord/Dashboard/[landlordId]/LandlordDashboardNav";
 export default function LandlordSignUp() {
     const router = useRouter();
     const [email, setEmail] = useState("");
@@ -34,6 +36,7 @@ export default function LandlordSignUp() {
     const [emailMessage, setEmailMessage] = useState("");
     const [user, setUser] = useState<User | null>(null);    
     const [loading, setLoading] = useState(true);
+    const [landlordId , setLandlordId] = useState("");
 
     useEffect(() => {
         async function getUser() {
@@ -141,13 +144,31 @@ export default function LandlordSignUp() {
         })
         console.log(response);
         if (response.error === null) {
+
+
             toast.success("Account created successfully");
-            toast.success("Please check your email for a verification link", {
-                duration: 5000,
-                icon: "⏳",
-            });
+            // toast.success("Please check your email for a verification link", {
+            //     duration: 5000,
+            //     icon: "⏳",
+            // });
             setUser(response.data.user);
-            router.refresh();
+            var result = await CreateLandlord({
+                userId: response.data.user?.id as string,
+                firstName: firstName,
+                lastName: lastName,
+                createdAt: null,
+                email: email,
+                fullName: firstName + " " + lastName,
+                modifiedAt: null,
+                id: 0,
+            })
+            console.log("result on the sign up page");
+            console.log(result);
+            if (result.id !== null) {
+                console.log("Setting the landlord id");
+                setLandlordId(result.id);
+                router.push(`/Landlord/Dashboard/${landlordId}`);
+            }
             clearFields();
             return;
         }
@@ -169,8 +190,8 @@ export default function LandlordSignUp() {
         setIsVisible(!isVisible);
     };
 
-    console.log(loading);
-    console.log(user);
+    // console.log(loading);
+    // console.log(user);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -182,7 +203,7 @@ export default function LandlordSignUp() {
                 <h1 className="text-3xl font-semibold  mb-8">You are already logged in</h1>
                 <div className="flex flex-row justify-between w-[400px] gap-3">
                     <Button color="danger" variant="ghost" size="lg" onClick={handleLogout}>Logout</Button>
-                    <Button color="success" variant="ghost" size="lg">Dashboard</Button>
+                    <Button color="success" variant="ghost" size="lg" href={`/Landlord/Dashboard/${landlordId}`} >Dashboard</Button>
                     </div>
             </div>
         )

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import LandlordDashboard from './Dashboard/page'
-import LandlordDashboardNav from './Dashboard/LandlordDashboardNav'
+import LandlordDashboard from './Dashboard/[landlordId]/page'
+import LandlordDashboardNav from './Dashboard/[landlordId]/LandlordDashboardNav'
 import NotificationBar from './Components/notificationBar'
 
 const inter = Inter({ subsets: ['latin'] })
