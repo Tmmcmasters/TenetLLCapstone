@@ -3,11 +3,12 @@ import { Input, Spacer, Button } from "@nextui-org/react";
 import PasswordBox from "./PasswordBox";
 import { useRouter } from "next/navigation";
 import { Database } from "@/lib/database.types";
-import { User, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { User } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
 import toast from "react-hot-toast";
+import getUserSession, { signInWithEmailAndPassword, signOut } from "../../(actions)";
 
 export default function LandlordLogin() {
     const [email, setEmail] = useState('')
@@ -16,38 +17,43 @@ export default function LandlordLogin() {
     const [loading, setLoading] = useState(true)
 
     const router = useRouter()
-    const supabase = createClientComponentClient<Database>()
+    // const supabase = createClientComponentClient<Database>()
 
     useEffect(() => {
+
         async function getUser() {
-            const {data: {user}} = await supabase.auth.getUser();
-            setUser(user);
+            const userSession = await getUserSession();
+            console.log(userSession)
+            console.log(userSession.data.session?.user)
+            setUser(userSession.data.session?.user ?? null);
             setLoading(false);
         }
 
         getUser();
     }, []);
 
+
     const handleLogout = async () => {
-        const response = await supabase.auth.signOut();
+        const response = await signOut();
         setUser(null);
         router.refresh();
     }
 
 
     const handleSignIn = async () => {
-        var response = await supabase.auth.signInWithPassword({
+        var response = await signInWithEmailAndPassword({
             email,
-            password,
+            password
         })
         console.log(response)
-        if (response.error === null) {
+        var result = JSON.parse(response)
+        if (result.error === null) {
             toast.success('Login successful')
-            setUser(response.data.user)
+            setUser(result.data.user)
             router.refresh()
             return;
         }
-        toast.error(response.error.message)
+        toast.error(result.error.message)
         router.refresh()
     }
 
@@ -71,7 +77,7 @@ export default function LandlordLogin() {
                 <h1 className="text-3xl font-semibold  mb-8">You are already logged in</h1>
                 <div className="flex flex-row justify-between w-[400px] gap-3">
                     <Button color="danger" variant="bordered" size="lg" onClick={handleLogout}>Logout</Button>
-                    <Button color="success" variant="bordered" size="lg">Dashboard</Button>
+                    <Button color="success" variant="bordered" size="lg" onClick={() => router.push('/Dashboard/Landlord/')}>Dashboard</Button>
                     </div>
             </div>
         )

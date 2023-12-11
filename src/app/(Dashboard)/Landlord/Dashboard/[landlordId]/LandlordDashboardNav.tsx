@@ -8,14 +8,7 @@ import NotificationBar from '../../Components/notificationBar';
 import DashLogOutPopover from '../../Components/dashLogOutPopover';
 
 
-export default function LandlordDashboardNav({
-    params,
-}: {
-    params: {
-        landlordId: number
-        }
-}
-) {
+export default function LandlordDashboardNav() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
 

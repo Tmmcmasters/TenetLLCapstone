@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Input, Spacer } from "@nextui-org/react";
+import { Button, Input, Link, Spacer } from "@nextui-org/react";
 import PasswordBox from "./components/passwordBox/PasswordBox";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -12,8 +12,11 @@ import { EyeFilledIcon } from "./components/passwordBox/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./components/passwordBox/EyeSlashFilledIcon";
 import { Console } from "console";
 import toast from "react-hot-toast";
-import CreateLandlord from "./landlordController";
+import CreateLandlord, { GetLandlordByUserId } from "../../(actions)/landlordController";
 import LandlordDashboardNav from "@/app/(Dashboard)/Landlord/Dashboard/[landlordId]/LandlordDashboardNav";
+import { signUpWithEmailaAndPassword } from "../../(actions)";
+
+import getUserSession from "../../(actions)";
 export default function LandlordSignUp() {
     const router = useRouter();
     const [email, setEmail] = useState("");
@@ -39,9 +42,18 @@ export default function LandlordSignUp() {
     const [landlordId , setLandlordId] = useState("");
 
     useEffect(() => {
+
         async function getUser() {
-            const {data: {user}} = await supabase.auth.getUser();
-            setUser(user);
+            const userSession = await getUserSession();
+            // console.log(userSession)
+            // console.log(userSession.data.session?.user)
+            await setUser(userSession.data.session?.user ?? null);
+            if (user !== null) {
+                const response = await GetLandlordByUserId(user.id);
+                const result = JSON.parse(response)
+                console.log("The landlord id is: " + result.data.id);
+                setLandlordId(result.data.id);
+            }
             setLoading(false);
         }
 
@@ -130,20 +142,17 @@ export default function LandlordSignUp() {
         setPasswordMatch(true);
         setPasswordMessage("");
 
-        var response = await supabase.auth.signUp({
-            email: email,
-            password: password,
-            options: {
-                emailRedirectTo: `${location.origin}/auth/callback`,
-                data: {
-                    first_name: firstName,
-                    last_name: lastName,
-                    username: username
-                }
-            }
+        var result = await signUpWithEmailaAndPassword({
+            email,
+            password,
+            firstName,
+            lastName,
+            username
         })
-        console.log(response);
-        if (response.error === null) {
+        const {data, error} = JSON.parse(result); 
+        console.log(data);
+        console.log(error);
+        if (error === null) {
 
 
             toast.success("Account created successfully");
@@ -151,9 +160,9 @@ export default function LandlordSignUp() {
             //     duration: 5000,
             //     icon: "⏳",
             // });
-            setUser(response.data.user);
-            var result = await CreateLandlord({
-                userId: response.data.user?.id as string,
+            setUser(data.user);
+            const landlordResult = await CreateLandlord({
+                userId: data.user?.id as string,
                 firstName: firstName,
                 lastName: lastName,
                 createdAt: null,
@@ -162,17 +171,18 @@ export default function LandlordSignUp() {
                 modifiedAt: null,
                 id: 0,
             })
+            const landlordParsed = JSON.parse(landlordResult);
             console.log("result on the sign up page");
-            console.log(result);
-            if (result.id !== null) {
-                console.log("Setting the landlord id");
-                setLandlordId(result.id);
-                router.push(`/Landlord/Dashboard/${landlordId}`);
-            }
+            console.log(landlordParsed);
+            // if (landlordParsed.id !== null) {
+            //     console.log("Setting the landlord id");
+            //     await setLandlordId(landlordParsed.id);
+            //     router.push(`/Landlord/Dashboard/${landlordId}`);
+            // }
             clearFields();
             return;
         }
-        toast.error(response.error.message);
+        toast.error(error.message);
         clearFields();
         router.refresh();
     }
@@ -197,13 +207,24 @@ export default function LandlordSignUp() {
         return <div>Loading...</div>;
     }
 
+    
+    async function  getLandlord(userId: string) {
+        const response =   await GetLandlordByUserId(userId);
+                const result = JSON.parse(response)
+                
+                setLandlordId(result.id);
+    }
+
     if (user) {
+        console.log(user);
+        getLandlord(user.id);
+
         return (
             <div className="flex flex-col items-center justify-center text-center align-middle h-[85vh]">
                 <h1 className="text-3xl font-semibold  mb-8">You are already logged in</h1>
                 <div className="flex flex-row justify-between w-[400px] gap-3">
                     <Button color="danger" variant="ghost" size="lg" onClick={handleLogout}>Logout</Button>
-                    <Button color="success" variant="ghost" size="lg" href={`/Landlord/Dashboard/${landlordId}`} >Dashboard</Button>
+                    <Button as={Link} color="success" variant="ghost" size="lg" href={`/Landlord/Dashboard/${landlordId}`} >Dashboard</Button>
                     </div>
             </div>
         )
