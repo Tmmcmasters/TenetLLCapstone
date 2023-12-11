@@ -38,7 +38,7 @@ export async function GetLandlordByUserId(userId: string) {
         .select()
         .eq('userId', userId)
 
-        console.log("Here is the landlord");
-        console.log(data![0]);
+        // console.log("Here is the landlord");
+        // console.log(data![0]);
         return JSON.stringify(data![0]);
 }
