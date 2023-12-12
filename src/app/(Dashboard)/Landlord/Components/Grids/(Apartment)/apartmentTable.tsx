@@ -14,7 +14,13 @@ import AddApartmentButton from "./addApartmentButton";
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "address", "description", "complexName"];
 
-export default function ApartmentTable () {
+export default function ApartmentTable (
+    {
+        landlordId
+    }: {
+        landlordId: number
+    }
+) {
     const [filterValue, setFilterValue] = React.useState("");
     const [page, setPage] = React.useState(1);
     const rowsPerPage = 10;

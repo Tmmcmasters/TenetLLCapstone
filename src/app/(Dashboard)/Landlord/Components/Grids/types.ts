@@ -7,6 +7,7 @@ export type Complex = {
     description: string;
     createdAt: string;
     modifiedAt: string;
+    landlordId?: number;
 }
 
 export type Apartment = {

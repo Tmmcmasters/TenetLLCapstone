@@ -17,7 +17,14 @@ import DeleteComplexButton from "./deleteComplexButton";
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "address", "description"];
 
-export default function ComplexesTable() {
+export default function ComplexesTable(
+    {
+        landlordId
+    }: 
+    {
+        landlordId: number
+    }
+) {
     const [filterValue, setFilterValue] = React.useState("");
     const [page, setPage] = React.useState(1);
     const rowsPerPage = 10;
@@ -108,7 +115,7 @@ export default function ComplexesTable() {
                     value={filterValue}
                     onValueChange={(value) => onSearchChange(value)}
                 />
-             <AddComplexButton />
+             <AddComplexButton landlordId={landlordId}/>
             </div>
             <Table aria-label="Complex table with dyamic content" bottomContent={
                 <div className="flex w-full justify-center">

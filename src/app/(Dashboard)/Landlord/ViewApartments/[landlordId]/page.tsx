@@ -5,7 +5,7 @@ export default function ViewApartments ({
     params,
 }: {
     params: {
-        landlordId: string
+        landlordId: number
 }
 }
 ) {
@@ -13,7 +13,7 @@ export default function ViewApartments ({
 
     return (
         <div className="flex flex-col w-full h-[93vh] justify-center items-center align-middle">
-            <ApartmentTable />
+            <ApartmentTable landlordId={params.landlordId}/>
         </div>
     )
 }

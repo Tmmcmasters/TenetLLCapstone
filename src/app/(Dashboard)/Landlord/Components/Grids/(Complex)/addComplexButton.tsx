@@ -1,9 +1,50 @@
+"use client";
+
 import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@nextui-org/react";
 import { PlusIcon } from "../../Icons/PlusIcon";
+import { useState } from "react";
+import CreateApartmentComplex from "@/app/(Dashboard)/(actions)/landlordDashController";
+import toast from "react-hot-toast";
 
 
-export default function AddComplexButton () {
+export default function AddComplexButton (
+    {
+        landlordId
+    }: {
+        landlordId: number
+    }
+) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const [complexName, setComplexName] = useState("")
+    const [address, setAddress] = useState("")
+    const [description, setDescription] = useState("")
+    const [addAnother, setAddAnother] = useState(false)
+
+    async function SaveApartment () {
+        
+
+        toast.promise(CreateApartmentComplex({
+            name: complexName,
+            address: address,
+            description: description,
+            id: 0,
+            createdAt: "",
+            modifiedAt: "",
+            landlordId: landlordId
+        }), {
+            loading: 'Saving...',
+            success: <b>Saved Complex</b>,
+            error: <b>Could not save Complex</b>,
+        });
+        // const isSuccess = await CreateApartmentComplex({
+        //     name: complexName,
+        //     address: address,
+        //     description: description,
+        //     id: 0,
+        //     createdAt: "",
+        //     modifiedAt: "",
+        // })
+    }
 
 
     return (
@@ -23,23 +64,29 @@ export default function AddComplexButton () {
                                 label="Complex Name"
                                 placeholder="Enter complex name"
                                 variant="bordered"
-                                required
+                                onChange={(e) => setComplexName(e.target.value)}
+                                isRequired
+                                value={complexName}
                             />
                             <Input
                                 label="Address"
                                 type="address"
                                 placeholder="Enter address"
                                 variant="bordered"
-                                required
+                                isRequired
+                                onChange={(e) => setAddress(e.target.value)}
+                                value={address}
                             />
                             <Textarea
                                 label="Description"
                                 placeholder="Enter description"
                                 variant="bordered"
-                                required
+                                onChange={(e) => setDescription(e.target.value)}
+                                value={description}
+                                
                             />
                             <div className="flex flex-row justify-start">
-                            <Checkbox size="md">Add Another</Checkbox>
+                            <Checkbox size="md" onChange={(e) => setAddAnother(e.target.checked)} isSelected={addAnother}>Add Another</Checkbox>
                             </div>
                         </ModalBody>
                         <ModalFooter className="w-full flex justify-between">
@@ -58,7 +105,7 @@ export default function AddComplexButton () {
                                     size="md"
                                     color="success"
                                     variant="ghost"
-                                    onPress={onClose}
+                                    onPress={SaveApartment}
                                 >
                                     Save
                                 </Button>

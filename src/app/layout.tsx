@@ -23,12 +23,12 @@ export default function RootLayout({
         <Toaster toastOptions={{
           style: {
             borderRadius: '10px',
-            background: '#2222',
+            background: '#0d0d0d',
             padding: '15px',
             margin: '10px',
             border: '2px solid #7777',
             color: '#fff',
-            zIndex: 10000,
+            // zIndex: 99999,
             boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
           },
           position: 'top-center',
