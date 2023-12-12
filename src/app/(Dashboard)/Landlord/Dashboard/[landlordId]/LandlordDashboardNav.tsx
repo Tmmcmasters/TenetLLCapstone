@@ -49,8 +49,60 @@ export default function LandlordDashboardNav() {
     ]
 if (loading) {
     return (
-        <div className='flex justify-center h-[7vh] align-middle '>
+        <div className='flex flex-col justify-center align-middle '>
             <Progress isIndeterminate color="primary" size='sm' aria-label='Loading'/>
+            <Navbar height="3.5rem">
+            <NavbarContent>
+                <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className='sm:hidden' />
+                <NavbarBrand >
+                    <a className='underline text-3xl font-light' aria-disabled>TicketPro</a>
+                </NavbarBrand>
+            </NavbarContent>
+
+            <NavbarContent justify='center' className='hidden sm:flex gap-8'>
+                <NavbarItem>
+                    <Link isDisabled color='foreground'>
+                        Apartments
+                    </Link>
+                </NavbarItem>
+                <NavbarItem>
+                    <Link isDisabled color='foreground'>
+                        Complexes
+                    </Link>
+                </NavbarItem>
+                <NavbarItem>
+                    <Link isDisabled color='foreground'>
+                        Tenets
+                    </Link>
+                </NavbarItem>
+            </NavbarContent>
+            <NavbarContent justify='end'>
+                <NavbarItem>
+                    <Popover backdrop='opaque'>
+                        <PopoverTrigger>
+                            <Button color="primary" variant="solid" isIconOnly disabled>
+                                <IoNotificationsOutline style={{ height: '24px', width: '24px' }} />
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent>
+                            <NotificationBar />
+                        </PopoverContent>
+                    </Popover>
+                </NavbarItem>
+                <NavbarItem className='hidden sm:flex' >
+                <Button color='danger' variant='ghost' className='font-bold' disabled>Logout</Button>
+                </NavbarItem>
+            </NavbarContent>
+
+            <NavbarMenu>
+                {menuItems.map((item, index) => (
+                    <NavbarMenuItem key={index}>
+                        {item === "Logout" ? <DashLogOutPopover /> : <Link isDisabled color="foreground">{item}</Link>}
+                    </NavbarMenuItem>
+                ))}
+            </NavbarMenu>
+
+        </Navbar>
         </div>
     )
     }
