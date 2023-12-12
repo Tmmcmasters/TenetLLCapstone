@@ -1,13 +1,54 @@
 import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, Tooltip, useDisclosure } from "@nextui-org/react";
 import { EditIcon } from "../../Icons/EditIcon";
 import { Complex } from "../types";
+import { useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { UpdateComplex } from "@/app/(Dashboard)/(actions)/landlordDashController";
 
-interface EditComplexbuttonProps {
-    complexRow: Complex;
-  }
-export default function EditComplexbutton(complexRow: EditComplexbuttonProps) {
 
-    const {isOpen, onOpen, onOpenChange} = useDisclosure(); 
+// interface EditComplexbuttonProps {
+//     complexRow: Complex;
+//   }
+export default function EditComplexbutton(
+    {
+        complexRow,
+        getComplexes
+    }:
+    {
+        complexRow: Complex,
+        getComplexes: () => void  
+    }
+) {
+    // const compledNameRef = useRef<HTMLInputElement | null>(null);
+    // const addressRef = useRef<HTMLInputElement | null>(null);
+    // const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
+    const [complexName, setComplexName] = useState(complexRow.name);
+    const [address, setAddress] = useState(complexRow.address);
+    const [description, setDescription] = useState(complexRow.description);
+
+    const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure(); 
+
+    async function EditComplex() {
+        toast.promise(UpdateComplex({
+            name: complexName,
+            address: address,
+            description: description,
+            id: complexRow.id,
+            landlordId: complexRow.landlordId,
+            createdAt: complexRow.createdAt,
+            modifiedAt: new Date().toISOString().slice(0,10)
+        }),
+        {
+            loading: 'Updating...',
+            success: <b>Updated Complex</b>,
+            error: <b>Could not update Complex</b>,
+        })
+        onClose();
+        setTimeout(() => {
+            getComplexes();
+            
+        }, 1000);
+    }
 
     return (
         <div >
@@ -30,20 +71,23 @@ export default function EditComplexbutton(complexRow: EditComplexbuttonProps) {
                                 label="Complex Name"
                                 placeholder="Enter complex name"
                                 variant="bordered"
-                                value={complexRow.complexRow.name}
+                                value={complexName}
+                                onChange={(e) => setComplexName(e.target.value)}
                             />
                             <Input
                                 label="Address"
                                 type="address"
                                 placeholder="Enter address"
                                 variant="bordered"
-                                value={complexRow.complexRow.address}
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
                             />
                             <Textarea
                                 label="Description"
                                 placeholder="Enter description"
                                 variant="bordered"
-                                value={complexRow.complexRow.description}
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
                             />
                         </ModalBody>
                         <ModalFooter className="w-full flex justify-between">
@@ -59,7 +103,7 @@ export default function EditComplexbutton(complexRow: EditComplexbuttonProps) {
                                     size="md"
                                     color="success"
                                     variant="ghost"
-                                    onPress={onClose}
+                                    onPress={EditComplex}
                                 >
                                     Save
                                 </Button>

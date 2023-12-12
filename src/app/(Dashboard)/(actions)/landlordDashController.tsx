@@ -74,3 +74,29 @@ export async function RemoveComplexById(landlordId: number) {
         }
     });
 }
+
+export async function UpdateComplex(complex: Complex) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const supabase = await createSupabaseServerCleint();
+            const { data, error } = await supabase
+                .from('apartment complex')
+                .update([
+                    { name: complex.name, 
+                        address: complex.address, 
+                        description: complex.description, 
+                        landlordId: complex.landlordId
+                    },
+                ])
+                .eq('id', complex.id);
+            if (error) {
+                console.log(error);
+                reject(error);
+            }
+            resolve(true);
+        } catch (error) {
+            console.error('Error in UpdateComplexById:', error);
+            reject(error);
+        }
+    });
+}

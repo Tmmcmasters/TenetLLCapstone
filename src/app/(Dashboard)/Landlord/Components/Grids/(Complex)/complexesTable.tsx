@@ -92,7 +92,7 @@ export default function ComplexesTable(
                                 <EyeIcon />
                             </span>
                         </Tooltip>
-                        <EditComplexbutton complexRow = {item}  />
+                        <EditComplexbutton complexRow = {item}  getComplexes={GetComplexes}/>
                         <DeleteComplexButton complexRow={item} getComplexes={GetComplexes}/>
                     </div>
                 );
@@ -115,13 +115,7 @@ export default function ComplexesTable(
         setPage(1)
     }, [])
 
-if (loading) {
-    return (
-        <div className="flex flex-col w-fit h-full justify-center items-center align-middle gap-2 ml-3 mr-3">
-            <CircularProgress color="secondary"  aria-label="Loading" isIndeterminate size="lg" label="Loading..." />
-        </div>
-    )
-} else {
+
     return (
         <div className="flex flex-col w-[95vw] h-full justify-start items-center align-middle gap-2 ml-3 mr-3">
             <h1 className="text-3xl font-semibold mt-10">Complexes Table</h1>
@@ -136,10 +130,21 @@ if (loading) {
                     isClearable
                     onClear={() => onClear()}
                     value={filterValue}
+                    isDisabled={loading}
                     onValueChange={(value) => onSearchChange(value)}
                 />
              <AddComplexButton landlordId={landlordId} getComplexes={GetComplexes}/>
             </div>
+            
+            {
+                loading ? (
+                    <div className="flex flex-col w-fit h-[20%] justify-center items-center align-middle gap-2 ml-3 mr-3">
+            <CircularProgress color="secondary"  aria-label="Loading" isIndeterminate size="lg" label="Loading..." />
+        </div>
+                ) : (
+                    <>
+                    
+                    
             <Table aria-label="Complex table with dyamic content" bottomContent={
                 <div className="flex w-full justify-center">
                     <Pagination
@@ -175,7 +180,9 @@ if (loading) {
                     )}
                 </TableBody>
             </Table>
+            </>
+                )
+            }
         </div>
     )
-}
 }
