@@ -24,8 +24,8 @@ export default function DeleteComplexButton (
             success: <b>Deleted Complex</b>,
             error: <b>Could not delete Complex</b>,
         })
-        getComplexes();
         onClose();
+        getComplexes();
     }
 
     return (
