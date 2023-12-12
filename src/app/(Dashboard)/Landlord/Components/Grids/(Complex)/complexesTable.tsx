@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Spacer, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, getKeyValue, Input, Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem, Chip, Pagination, Tooltip, SortDescriptor } from "@nextui-org/react";
 import { EyeIcon } from "../../Icons/EyeIcon";
 import { DeleteIcon } from "../../Icons/DeleteIcon";
@@ -8,11 +8,12 @@ import { EditIcon } from "../../Icons/EditIcon";
 import { SearchIcon } from "../../Icons/SearchIcon";
 import { PlusIcon } from "../../Icons/PlusIcon";
 import { capitalize } from "../utils";
-import { columns, complexes } from "./complexData";
+import { columns } from "./complexData";
 import AddComplexButton from "./addComplexButton";
 import EditComplexbutton from "./editComplexButton";
 import { Complex } from "../types";
 import DeleteComplexButton from "./deleteComplexButton";
+import { GetAllComplexesByLandlordId } from "@/app/(Dashboard)/(actions)/landlordDashController";
 
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "address", "description"];
@@ -27,10 +28,24 @@ export default function ComplexesTable(
 ) {
     const [filterValue, setFilterValue] = React.useState("");
     const [page, setPage] = React.useState(1);
+    const [loading, setLoading] = React.useState(true);
     const rowsPerPage = 10;
-    const pages = Math.ceil(complexes.length / rowsPerPage);
     const hasSearchFilter = Boolean(filterValue);
-    // console.log(complexes)
+    const [complexes, setComplexes] = useState<Complex[]>([]);
+    
+    useEffect(() => {
+        GetComplexes()
+    }, []);
+    
+    async function GetComplexes() {
+        const response = await GetAllComplexesByLandlordId(landlordId);
+        // console.log(response);
+        const result = JSON.parse(response as string)
+        // console.log("Here are the results: ")
+        // console.log(result)
+        setComplexes(result)
+    }
+    const pages = Math.ceil(complexes.length / rowsPerPage);
 
     const filteredItems = React.useMemo(() => {
         let filteredComplexes = [...complexes];

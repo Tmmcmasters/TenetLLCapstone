@@ -36,3 +36,21 @@ export default async function CreateApartmentComplex(complex: Complex) {
     });
 
 }
+
+export  async function GetAllComplexesByLandlordId(landlordId: number) {
+    try {
+        const supabase = await createSupabaseServerCleint();
+        const { data, error } = await supabase
+            .from('apartment complex')
+            .select('*')
+            .eq('landlordId', landlordId);
+        if (error) {
+            console.log(error);
+        }
+        // console.log(data);
+        return JSON.stringify(data);
+    } catch (error) {
+        console.error('Error in GetAllComplexesByLandlordId:', error);
+        return error;
+    }
+}
