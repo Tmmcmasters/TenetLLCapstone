@@ -14,7 +14,7 @@ import { Console } from "console";
 import toast from "react-hot-toast";
 import CreateLandlord, { GetLandlordByUserId } from "../../(actions)/landlordController";
 import LandlordDashboardNav from "@/app/(Dashboard)/Landlord/Dashboard/[landlordId]/LandlordDashboardNav";
-import { signUpWithEmailaAndPassword } from "../../(actions)";
+import { signOut, signUpWithEmailaAndPassword } from "../../(actions)";
 
 import getUserSession from "../../(actions)";
 export default function LandlordSignUp() {
@@ -60,7 +60,7 @@ export default function LandlordSignUp() {
         getUser();
     }, []);
 
-    const supabase = createClientComponentClient<Database>();
+    // const supabase = createClientComponentClient<Database>();
 
     const validateForm = async () => {
         var valid = true;
@@ -129,10 +129,11 @@ export default function LandlordSignUp() {
     }
 
     const handleLogout = async () => {
-        const response = await supabase.auth.signOut();
+        const response = await signOut();
         setUser(null);
         router.refresh();
     }
+
     const handleSignUp = async () => {
         var valid = await validateForm();
         if (!valid) {

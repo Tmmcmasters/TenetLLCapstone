@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
     title: 'Ticket Pro',
-    description: 'SignUp to Ticket Pro',
+    description: 'Dashboard to Ticket Pro',
 }
 
 export default function RootLayout({

@@ -20,10 +20,10 @@ export default async function LandlordDashboard(
     console.log(params.landlordId)
     const supabase = await createSupabaseServerCleint();
     const {data} = await supabase.auth.getSession();
-    console.log(data)
-    // if (session === null) {
-    //     redirect("/Login/Landlord")
-    // }
+    // console.log(data)
+    if (data === null) {
+        redirect("/Login/Landlord")
+    }
 
 
 

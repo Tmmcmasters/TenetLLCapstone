@@ -32,6 +32,8 @@ export default async function CreateLandlord(Landlord: Landlord) {
 }
 
 export async function GetLandlordByUserId(userId: string) {
+    // console.log("I made it to the controller")
+    // console.log(userId)
     const supabase = await createSupabaseServerCleint();
     const { data, error } = await supabase
         .from('landlord')
