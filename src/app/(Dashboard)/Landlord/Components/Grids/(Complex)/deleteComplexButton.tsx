@@ -30,7 +30,7 @@ export default function DeleteComplexButton (
 
     return (
         <div>
-            <Tooltip color="danger" content="Delete Complex">
+            <Tooltip color="danger" className="select-none" content="Delete Complex">
                             <span className="text-lg text-danger cursor-pointer active:opacity-50" onClick={onOpen}>
                                 <DeleteIcon />
                             </span>

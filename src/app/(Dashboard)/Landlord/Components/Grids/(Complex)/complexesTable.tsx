@@ -87,7 +87,7 @@ export default function ComplexesTable(
             case "actions":
                 return (
                     <div className="relative flex items-center gap-2">
-                        <Tooltip content="View Apartments">
+                        <Tooltip content="View Apartments" className="select-none">
                             <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                                 <EyeIcon />
                             </span>
