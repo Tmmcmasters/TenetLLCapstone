@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
-import { Spacer, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, getKeyValue, Input, Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem, Chip, Pagination, Tooltip, SortDescriptor } from "@nextui-org/react";
+import { Spacer, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow, getKeyValue, Input, Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem, Chip, Pagination, Tooltip, SortDescriptor, CircularProgress } from "@nextui-org/react";
 import { EyeIcon } from "../../Icons/EyeIcon";
 import { DeleteIcon } from "../../Icons/DeleteIcon";
 import { EditIcon } from "../../Icons/EditIcon";
@@ -44,6 +44,7 @@ export default function ComplexesTable(
         // console.log("Here are the results: ")
         // console.log(result)
         setComplexes(result)
+        setLoading(false)
     }
     const pages = Math.ceil(complexes.length / rowsPerPage);
 
@@ -113,7 +114,13 @@ export default function ComplexesTable(
         setPage(1)
     }, [])
 
-
+if (loading) {
+    return (
+        <div className="flex flex-col w-fit h-full justify-center items-center align-middle gap-2 ml-3 mr-3">
+            <CircularProgress color="secondary"  aria-label="Loading" isIndeterminate size="lg" label="Loading..." />
+        </div>
+    )
+} else {
     return (
         <div className="flex flex-col w-fit h-full justify-start items-center align-middle gap-2 ml-3 mr-3">
             <h1 className="text-3xl font-semibold mt-10">Complexes Table</h1>
@@ -169,4 +176,5 @@ export default function ComplexesTable(
             </Table>
         </div>
     )
+}
 }
