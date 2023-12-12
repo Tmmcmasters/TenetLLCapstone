@@ -38,6 +38,7 @@ export default function ComplexesTable(
     }, []);
     
     async function GetComplexes() {
+        setLoading(true)
         const response = await GetAllComplexesByLandlordId(landlordId);
         // console.log(response);
         const result = JSON.parse(response as string)
@@ -80,7 +81,7 @@ export default function ComplexesTable(
     const renderCell = (item: Complex, columnKey: React.Key) => {
         const value = getKeyValue(item, columnKey);
 
-
+        
 
         switch (columnKey) {
             case "actions":
@@ -92,7 +93,7 @@ export default function ComplexesTable(
                             </span>
                         </Tooltip>
                         <EditComplexbutton complexRow = {item}  />
-                        <DeleteComplexButton complexRow = {item} />
+                        <DeleteComplexButton complexRow={item} getComplexes={GetComplexes}/>
                     </div>
                 );
             default:
@@ -122,7 +123,7 @@ if (loading) {
     )
 } else {
     return (
-        <div className="flex flex-col w-fit h-full justify-start items-center align-middle gap-2 ml-3 mr-3">
+        <div className="flex flex-col w-[95vw] h-full justify-start items-center align-middle gap-2 ml-3 mr-3">
             <h1 className="text-3xl font-semibold mt-10">Complexes Table</h1>
             <Spacer y={3} />
             <div className="flex w-full justify-between">
@@ -137,7 +138,7 @@ if (loading) {
                     value={filterValue}
                     onValueChange={(value) => onSearchChange(value)}
                 />
-             <AddComplexButton landlordId={landlordId}/>
+             <AddComplexButton landlordId={landlordId} getComplexes={GetComplexes}/>
             </div>
             <Table aria-label="Complex table with dyamic content" bottomContent={
                 <div className="flex w-full justify-center">
@@ -153,7 +154,7 @@ if (loading) {
                 </div>
             }
                 classNames={{
-                    wrapper: "min-h-[222px]",
+                    wrapper: "min-h-[549px]",
                 }}
                 selectionMode="single"
             >

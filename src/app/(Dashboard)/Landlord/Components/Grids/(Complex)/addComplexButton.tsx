@@ -9,9 +9,11 @@ import toast from "react-hot-toast";
 
 export default function AddComplexButton(
     {
-        landlordId
+        landlordId,
+        getComplexes
     }: {
-        landlordId: number
+        landlordId: number,
+        getComplexes: () => void
     }
 ) {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
@@ -28,12 +30,14 @@ export default function AddComplexButton(
                 setComplexName("")
                 setAddress("")
                 setDescription("")
+                getComplexes();
                 return <b>Saved Complex</b>
             }
             onClose()
             setComplexName("")
             setAddress("")
             setDescription("")
+            getComplexes();
             return <b>Saved Complex</b>
         }
 
@@ -50,14 +54,7 @@ export default function AddComplexButton(
             success: successManage,
             error: <b>Could not save Complex</b>,
         });
-        // const isSuccess = await CreateApartmentComplex({
-        //     name: complexName,
-        //     address: address,
-        //     description: description,
-        //     id: 0,
-        //     createdAt: "",
-        //     modifiedAt: "",
-        // })
+        
     }
 
     

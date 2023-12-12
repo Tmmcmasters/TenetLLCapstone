@@ -54,3 +54,23 @@ export  async function GetAllComplexesByLandlordId(landlordId: number) {
         return error;
     }
 }
+
+export async function RemoveComplexById(landlordId: number) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const supabase = await createSupabaseServerCleint();
+            const { data, error } = await supabase
+                .from('apartment complex')
+                .delete()
+                .eq('id', landlordId);
+            if (error) {
+                console.log(error);
+                reject(error);
+            }
+            resolve(true);
+        } catch (error) {
+            console.error('Error in RemoveLandlordById:', error);
+            reject(error);
+        }
+    });
+}

@@ -1,14 +1,32 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Spacer, Tooltip, useDisclosure } from "@nextui-org/react";
 import { DeleteIcon } from "../../Icons/DeleteIcon";
 import { Complex } from "../types";
+import toast from "react-hot-toast";
+import { RemoveComplexById } from "@/app/(Dashboard)/(actions)/landlordDashController";
 
-interface DeleteComplexButtonProps {
-    complexRow: Complex;
-}
 
-export default function DeleteComplexButton (complexRow: DeleteComplexButtonProps) {
 
-    const {isOpen, onOpen, onOpenChange} = useDisclosure(); 
+export default function DeleteComplexButton (
+    {
+        getComplexes,
+        complexRow
+    }: {
+        getComplexes: () => void,
+        complexRow: Complex
+    }
+    ) {
+
+    const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure(); 
+
+    async function RemoveComplex() {
+        toast.promise(RemoveComplexById(complexRow.id), {
+            loading: 'Deleting...',
+            success: <b>Deleted Complex</b>,
+            error: <b>Could not delete Complex</b>,
+        })
+        getComplexes();
+        onClose();
+    }
 
     return (
         <div>
@@ -27,7 +45,7 @@ export default function DeleteComplexButton (complexRow: DeleteComplexButtonProp
                     <ModalContent>
                         {(onClose) => (
                             <>
-                            <ModalHeader className="flex flex-col font-normal"><p className="text-xl">Are you sure you want to delete <span className="text-primary-600 font-semibold">{complexRow.complexRow.name}</span>?</p></ModalHeader>
+                            <ModalHeader className="flex flex-col font-normal"><p className="text-xl">Are you sure you want to delete <span className="text-primary-600 font-semibold">{complexRow.name}</span>?</p></ModalHeader>
                             <ModalBody>
                                 <p className="text-lg">Deleting a complex <span className="text-danger-500 font-bold"> removes all the apartments within it.</span></p>
                                 <p className="text-warning-500 font-semibold text-lg">This action cannot be undone.</p>
@@ -45,8 +63,9 @@ export default function DeleteComplexButton (complexRow: DeleteComplexButtonProp
                                 <Button
                                     size="md"
                                     color="danger"
-                                    variant="solid"
-                                    onPress={onClose}
+                                    variant="ghost"
+                                    className="font-semibold"
+                                    onPress={RemoveComplex}
                                 >
                                     DELETE
                                 </Button>
