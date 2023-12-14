@@ -13,7 +13,8 @@ import AddComplexButton from "./addComplexButton";
 import EditComplexbutton from "./editComplexButton";
 import { Complex } from "../types";
 import DeleteComplexButton from "./deleteComplexButton";
-import { GetAllComplexesByLandlordId } from "@/app/(Dashboard)/actions/landlordDashController";
+import { GetAllComplexesByLandlordId } from "@/app/(Dashboard)/actions/landlordComplexController";
+
 
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "address", "description"];

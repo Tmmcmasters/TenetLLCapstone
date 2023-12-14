@@ -2,7 +2,7 @@ import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Space
 import { DeleteIcon } from "../../Icons/DeleteIcon";
 import { Complex } from "../types";
 import toast from "react-hot-toast";
-import { RemoveComplexById } from "@/app/(Dashboard)/actions/landlordDashController";
+import { RemoveComplexById } from "@/app/(Dashboard)/actions/landlordComplexController";
 
 
 

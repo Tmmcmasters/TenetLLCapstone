@@ -1,9 +1,10 @@
 import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, SelectItem, Textarea, useDisclosure } from "@nextui-org/react";
 import { PlusIcon } from "../../Icons/PlusIcon";
 import { useEffect, useState } from "react";
-import { GetAllComplexesByLandlordId } from "@/app/(Dashboard)/actions/landlordDashController";
+
 import toast from "react-hot-toast";
 import { Complex } from "../types";
+import { GetAllComplexesByLandlordId } from "@/app/(Dashboard)/actions/landlordComplexController";
 
 
 export default function AddApartmentButton (
