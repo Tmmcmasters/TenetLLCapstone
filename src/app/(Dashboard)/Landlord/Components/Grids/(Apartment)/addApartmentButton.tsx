@@ -3,8 +3,9 @@ import { PlusIcon } from "../../Icons/PlusIcon";
 import { useEffect, useState } from "react";
 
 import toast from "react-hot-toast";
-import { Complex } from "../types";
-import { GetAllComplexesByLandlordId } from "@/app/(Dashboard)/actions/landlordComplexController";
+import { Apartment, Complex } from "../types";
+import  { GetAllComplexesByLandlordId } from "@/app/(Dashboard)/actions/landlordComplexController";
+import { CreateApartment } from "@/app/(Dashboard)/actions/landlordApartmentController";
 
 
 export default function AddApartmentButton (
@@ -19,6 +20,15 @@ export default function AddApartmentButton (
 ) {
     const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
     const [complexes, setComplexes] = useState([] as Complex[]);
+    const [complexId, setComplexId] = useState<number | string>("");
+    const [address, setAddress] = useState("");
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [complexName, setComplexName] = useState("");
+    const [addAnother, setAddAnother] = useState(false)
+    const [addDisabled, setAddDisabled] = useState(true)
+    const [apartmentNumber, setApartmentNumber] = useState<number | null>(null)
+
     
     useEffect(() => {
         async function GetComplexesByLandlord(landlordId:number) {
@@ -36,6 +46,65 @@ export default function AddApartmentButton (
         GetComplexesByLandlord(landlorId);
     }, [])
 
+    async function SaveApartment() {
+        if (complexes.length === 0) {
+            toast.error("Please add complexes first", {
+                duration: 6000,
+            });
+            return;
+        }
+        if (complexId === 0) {
+            toast.error("Please select a complex", {
+                duration: 6000,
+            });
+            return;
+        }
+        
+
+        const apartment: Apartment  = {
+            address: address,
+            name: name,
+            description: description,
+            apartmentNumber: apartmentNumber as number,
+            landlordId: landlorId,
+            id: 0,
+            createdAt: "",
+            modifiedAt: "",
+            complexId: complexId as number,
+            complexName: complexName
+        }
+        console.log()
+        console.log(apartment)
+
+        toast.promise(CreateApartment(apartment ), {
+            loading: 'Saving...',
+            success: <b>Saved Apartment</b>,
+            error: <b>Could not save Apartment</b>,
+        });
+        if (!addAnother) {
+            onClose();
+        }
+
+        GetApartments();
+        clearForm();
+    }
+
+    function clearForm() {
+        setComplexId(0);
+        setAddress("");
+        setName("");
+        setDescription("");
+        setComplexName("");
+        setApartmentNumber(null);
+    }
+
+    
+
+    async function onSelectChange(e:any) {
+        setComplexId(e.target.value);
+        setComplexName(complexes.find((complex) => complex.id == e.target.value)?.name as string);
+    }
+
 
     return (
         <div className="w-full flex justify-end">
@@ -44,6 +113,7 @@ export default function AddApartmentButton (
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 placeholder="top-center"
+                isDismissable={false}
             >
                 <ModalContent>
                     {(onClose) => (
@@ -55,6 +125,8 @@ export default function AddApartmentButton (
                                 placeholder="Enter apartment number"
                                 variant="bordered"
                                 isRequired
+                                onChange={(e) => setApartmentNumber(e.target.value as unknown as number) }
+                                value={apartmentNumber?.toString()}
                             />
                             <Select
                                 label="Select Complex"
@@ -62,14 +134,21 @@ export default function AddApartmentButton (
                                 variant="bordered"
                                 items={complexes}
                                 isRequired
+                                onChange={onSelectChange}
                             >
-                                {(complex) => <SelectItem key={complex.id}> {complex.name}</SelectItem>}
+                                {
+                                    complexes.map((complex) => (
+                                        <SelectItem key={complex.id} value={complex.id}>{complex.name}</SelectItem>
+                                    ))
+                                }
                             </Select>
                             <Input
                                 autoFocus
                                 label="Apartment Name"
                                 placeholder="Enter apartment name"
                                 variant="bordered"
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
                             />
                             <Input
                                 label="Address"
@@ -77,15 +156,19 @@ export default function AddApartmentButton (
                                 placeholder="Enter address"
                                 variant="bordered"
                                 isRequired
+                                onChange={(e) => setAddress(e.target.value)}
+                                value={address}
                             />
                             <Textarea
                                 label="Description"
                                 placeholder="Enter description"
                                 variant="bordered"
                                 required
+                                onChange={(e) => setDescription(e.target.value)}
+                                value={description}
                             />
                             <div className="flex flex-row justify-start">
-                            <Checkbox size="md">Add Another</Checkbox>
+                            <Checkbox size="md" onChange={(e) => setAddAnother(e.target.checked)} isSelected={addAnother}>Add Another</Checkbox>
                             </div>
                         </ModalBody>
                         <ModalFooter className="w-full flex justify-between">
@@ -104,7 +187,8 @@ export default function AddApartmentButton (
                                     size="md"
                                     color="success"
                                     variant="ghost"
-                                    onPress={onClose}
+                                    onPress={SaveApartment}
+                                    // isDisabled={addDisabled}
                                 >
                                     Save
                                 </Button>

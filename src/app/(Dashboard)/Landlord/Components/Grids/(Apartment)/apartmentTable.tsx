@@ -38,14 +38,14 @@ export default function ApartmentTable(
     
 
      async function GetApartments() {
-        console.log("I am here")
+        // console.log("I am here")
         setLoading(true)
         const response =  await GetApartmentsByLandlordId(landlordId);
         const result = JSON.parse(response as string)
 
         setApartments(result)
         setLoading(false)
-        console.log(result)
+        // console.log(result)
     }
 
 
