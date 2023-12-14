@@ -76,3 +76,32 @@ export async function RemoveApartmentById(apartmentId: number) {
         }
     });
 }
+
+export async function UpdateApartmentById(apartment:Apartment) {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const supabase = await createSupabaseServerCleint();
+            const { data, error } = await supabase
+                .from('apartment')
+                .update({
+                        complexNumber: apartment.complexId,
+                        apartmentNumber: apartment.apartmentNumber,
+                        name: apartment.name,
+                        address: apartment.address,
+                        description: apartment.description,
+                        // landlordId: apartment.landlordId,
+                        complexName: apartment.complexName,
+                        modified_at: new Date().toISOString()
+                })
+                .eq('id', apartment.id);
+            if (error) {
+                console.log(error);
+                reject(error);
+            }
+            resolve(true);
+        } catch (error) {
+            console.error('Error in UpdateApartmentById:', error);
+            reject(error);
+        }
+    })
+}
