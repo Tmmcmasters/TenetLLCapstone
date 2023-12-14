@@ -11,7 +11,7 @@ export default function EditApartmentButton(apartmentRow: EditApartmentbuttonPro
 
     return (
         <div >
-            <Tooltip content="Edit Apartment">
+            <Tooltip content="Edit Apartment" className="select-none">
                             <span className="text-lg text-default-400 cursor-pointer active:opacity-50" onClick={onOpen}>
                                 <EditIcon  />
                             </span>

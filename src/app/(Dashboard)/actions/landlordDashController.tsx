@@ -1,8 +1,9 @@
-"use server";
+'use server'
+
 import createSupabaseServerCleint from "@/lib/supabase/server";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
-import { Complex } from "../Landlord/Components/Grids/types";
+import { Apartment, Complex } from "../Landlord/Components/Grids/types";
 
 export default async function CreateApartmentComplex(complex: Complex) {
     return new Promise(async (resolve, reject) => {
@@ -37,23 +38,7 @@ export default async function CreateApartmentComplex(complex: Complex) {
 
 }
 
-export  async function GetAllComplexesByLandlordId(landlordId: number) {
-    try {
-        const supabase = await createSupabaseServerCleint();
-        const { data, error } = await supabase
-            .from('apartment complex')
-            .select('*')
-            .eq('landlordId', landlordId);
-        if (error) {
-            console.log(error);
-        }
-        // console.log(data);
-        return JSON.stringify(data);
-    } catch (error) {
-        console.error('Error in GetAllComplexesByLandlordId:', error);
-        return error;
-    }
-}
+
 
 export async function RemoveComplexById(landlordId: number) {
     return new Promise(async (resolve, reject) => {
@@ -99,4 +84,22 @@ export async function UpdateComplex(complex: Complex) {
             reject(error);
         }
     });
+}
+
+export  async function GetAllComplexesByLandlordId(landlordId: number) {
+    try {
+        const supabase = await createSupabaseServerCleint();
+        const { data, error } = await supabase
+            .from('apartment complex')
+            .select('*')
+            .eq('landlordId', landlordId);
+        if (error) {
+            console.log(error);
+        }
+        // console.log(data);
+        return JSON.stringify(data);
+    } catch (error) {
+        console.error('Error in GetAllComplexesByLandlordId:', error);
+        return error;
+    }
 }

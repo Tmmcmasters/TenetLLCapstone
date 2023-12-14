@@ -3,7 +3,7 @@ import { EditIcon } from "../../Icons/EditIcon";
 import { Complex } from "../types";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { UpdateComplex } from "@/app/(Dashboard)/(actions)/landlordDashController";
+import { UpdateComplex } from "@/app/(Dashboard)/actions/landlordDashController";
 
 
 // interface EditComplexbuttonProps {

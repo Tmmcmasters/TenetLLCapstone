@@ -13,30 +13,36 @@ export interface Database {
         Row: {
           address: string | null
           apartmentNumber: number | null
+          complexName: string | null
           complexNumber: number | null
           created_at: string
           description: string | null
           id: number
+          landlordId: number | null
           modified_at: string | null
           name: string | null
         }
         Insert: {
           address?: string | null
           apartmentNumber?: number | null
+          complexName?: string | null
           complexNumber?: number | null
           created_at?: string
           description?: string | null
           id?: number
+          landlordId?: number | null
           modified_at?: string | null
           name?: string | null
         }
         Update: {
           address?: string | null
           apartmentNumber?: number | null
+          complexName?: string | null
           complexNumber?: number | null
           created_at?: string
           description?: string | null
           id?: number
+          landlordId?: number | null
           modified_at?: string | null
           name?: string | null
         }
@@ -46,6 +52,13 @@ export interface Database {
             columns: ["complexNumber"]
             isOneToOne: false
             referencedRelation: "apartment complex"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "apartment_landlordId_fkey"
+            columns: ["landlordId"]
+            isOneToOne: false
+            referencedRelation: "landlord"
             referencedColumns: ["id"]
           }
         ]

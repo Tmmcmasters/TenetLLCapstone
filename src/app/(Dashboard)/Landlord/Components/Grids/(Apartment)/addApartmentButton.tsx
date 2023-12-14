@@ -1,9 +1,39 @@
-import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@nextui-org/react";
+import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Select, SelectItem, Textarea, useDisclosure } from "@nextui-org/react";
 import { PlusIcon } from "../../Icons/PlusIcon";
+import { useEffect, useState } from "react";
+import { GetAllComplexesByLandlordId } from "@/app/(Dashboard)/actions/landlordDashController";
+import toast from "react-hot-toast";
+import { Complex } from "../types";
 
 
-export default function AddApartmentButton () {
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+export default function AddApartmentButton (
+    {
+        landlorId,
+        GetApartments
+    }:
+    {
+        landlorId: number,
+        GetApartments: () => void
+    }
+) {
+    const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
+    const [complexes, setComplexes] = useState([] as Complex[]);
+    
+    useEffect(() => {
+        async function GetComplexesByLandlord(landlordId:number) {
+                const response = await GetAllComplexesByLandlordId(landlordId);
+                if (response) {
+                    const complexes = JSON.parse(response as string);
+                    setComplexes(complexes);
+                } else {
+                    toast.error("Could not get complexes. Please add complexes first", {
+                        duration: 6000,
+                    });
+                }
+        }
+
+        GetComplexesByLandlord(landlorId);
+    }, [])
 
 
     return (
@@ -19,18 +49,33 @@ export default function AddApartmentButton () {
                         <>
                         <ModalHeader className="flex flex-col gap-1">Add Apartment</ModalHeader><ModalBody>
                             <Input
+                                label="Apartment Number"
+                                type="number"
+                                placeholder="Enter apartment number"
+                                variant="bordered"
+                                isRequired
+                            />
+                            <Select
+                                label="Select Complex"
+                                placeholder="Select Complex"
+                                variant="bordered"
+                                items={complexes}
+                                isRequired
+                            >
+                                {(complex) => <SelectItem key={complex.id}> {complex.name}</SelectItem>}
+                            </Select>
+                            <Input
                                 autoFocus
                                 label="Apartment Name"
                                 placeholder="Enter apartment name"
                                 variant="bordered"
-                                required
                             />
                             <Input
                                 label="Address"
                                 type="address"
                                 placeholder="Enter address"
                                 variant="bordered"
-                                required
+                                isRequired
                             />
                             <Textarea
                                 label="Description"

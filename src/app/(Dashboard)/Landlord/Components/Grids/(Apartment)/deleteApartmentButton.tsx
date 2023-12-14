@@ -12,7 +12,7 @@ export default function DeleteApartmentButton (apartmentRow: DeleteApartmentButt
 
     return (
         <div>
-            <Tooltip color="danger" content="Delete Apartment">
+            <Tooltip color="danger" content="Delete Apartment" className="select-none">
                             <span className="text-lg text-danger cursor-pointer active:opacity-50" onClick={onOpen}>
                                 <DeleteIcon />
                             </span>

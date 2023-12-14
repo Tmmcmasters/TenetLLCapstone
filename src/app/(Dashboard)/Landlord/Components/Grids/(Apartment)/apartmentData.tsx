@@ -1,7 +1,12 @@
 const columns = [
+    // {
+    //     key: "id",
+    //     name: "ID",
+    //     sortable: true,
+    // },
     {
-        key: "id",
-        name: "ID",
+        key: "apartmentNumber",
+        name: "NUMBER",
         sortable: true,
     },
     {
