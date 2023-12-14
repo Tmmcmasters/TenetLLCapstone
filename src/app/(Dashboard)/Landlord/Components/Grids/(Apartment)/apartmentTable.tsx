@@ -91,7 +91,7 @@ export default function ApartmentTable(
                             </span>
                         </Tooltip>
                         <EditApartmentButton apartmentRow={item} />
-                        <DeleteApartmentButton apartmentRow={item} />
+                        <DeleteApartmentButton apartmentRow={item} getApartments={GetApartments} />
                     </div>
                 );
             default:

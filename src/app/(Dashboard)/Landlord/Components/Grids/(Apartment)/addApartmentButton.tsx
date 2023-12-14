@@ -73,8 +73,6 @@ export default function AddApartmentButton (
             complexId: complexId as number,
             complexName: complexName
         }
-        console.log()
-        console.log(apartment)
 
         toast.promise(CreateApartment(apartment ), {
             loading: 'Saving...',
