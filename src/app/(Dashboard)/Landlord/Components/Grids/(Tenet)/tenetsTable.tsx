@@ -85,7 +85,7 @@ export default function TenetsTable({
                             </span>
                         </Tooltip> */}
                         <EditTenetbutton tenetRow={item} />
-                        <DeleteTenetButton tenetRow={item} />
+                        <DeleteTenetButton tenetRow={item} GetTenets={GetTenets}/>
                     </div>
                 );
             default:
