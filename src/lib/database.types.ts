@@ -234,36 +234,57 @@ export interface Database {
       }
       tenet: {
         Row: {
+          address: string | null
           apartmentId: number | null
+          apartmentName: string | null
+          complexId: number | null
+          complexName: string | null
           confirmationCode: string | null
           created_at: string
           email: string | null
           firstName: string | null
+          fullName: string | null
           id: number
+          landlordId: number | null
           lastName: string | null
           modified_at: string | null
+          phone: number | null
           userId: string | null
         }
         Insert: {
+          address?: string | null
           apartmentId?: number | null
+          apartmentName?: string | null
+          complexId?: number | null
+          complexName?: string | null
           confirmationCode?: string | null
           created_at?: string
           email?: string | null
           firstName?: string | null
+          fullName?: string | null
           id?: number
+          landlordId?: number | null
           lastName?: string | null
           modified_at?: string | null
+          phone?: number | null
           userId?: string | null
         }
         Update: {
+          address?: string | null
           apartmentId?: number | null
+          apartmentName?: string | null
+          complexId?: number | null
+          complexName?: string | null
           confirmationCode?: string | null
           created_at?: string
           email?: string | null
           firstName?: string | null
+          fullName?: string | null
           id?: number
+          landlordId?: number | null
           lastName?: string | null
           modified_at?: string | null
+          phone?: number | null
           userId?: string | null
         }
         Relationships: [
@@ -272,6 +293,20 @@ export interface Database {
             columns: ["apartmentId"]
             isOneToOne: false
             referencedRelation: "apartment"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tenet_complexId_fkey"
+            columns: ["complexId"]
+            isOneToOne: false
+            referencedRelation: "apartment complex"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tenet_landlordId_fkey"
+            columns: ["landlordId"]
+            isOneToOne: false
+            referencedRelation: "landlord"
             referencedColumns: ["id"]
           },
           {

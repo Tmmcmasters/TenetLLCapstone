@@ -5,7 +5,7 @@ import { Tenet } from "../Landlord/Components/Grids/types";
 import { exportTraceState } from "next/dist/trace";
 
 export async function GetTenetsByLandlordId(landlordId: number) {
-    console.log("I made it to the server side");
+    // console.log("I made it to the server side");
     try {
         const supabase = await createSupabaseServerCleint();
         const { data, error } = await supabase
@@ -59,7 +59,10 @@ export async function CreateTenet(tenet: Tenet) {
                         email: tenet.email,
                         phone: tenet.phone,
                         apartmentId: tenet.apartmentId,
+                        apartmentName: tenet.apartmentName,
                         complexId: tenet.complexId,
+                        complexName: tenet.complexName,
+                        landlordId: tenet.landlordId,
                         address: tenet.address,
                         confirmationCode: tenet.confirmationCode
                     },
@@ -108,4 +111,25 @@ export async function UpdateTenetByTenetId(tenet: Tenet) {
             reject(error);
         }
     });
+}
+
+export async function GetApartmentsByComplexId(complexId: number) {
+    // console.log("I made it to the server side");
+    try {
+        const supabase = await createSupabaseServerCleint();
+        const { data, error } = await supabase
+            .from('apartment')
+            .select('*')
+            .eq('complexNumber', complexId);
+        if (error) {
+            console.log(error);
+            return null;
+        }
+        // console.log(data);
+        return JSON.stringify(data);
+    } catch (error) {
+        console.error('Error in GetApartmentsByComplexId:', error);
+        return null;
+        // throw error;
+    }
 }

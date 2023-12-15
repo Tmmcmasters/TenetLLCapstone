@@ -30,7 +30,7 @@ export type Tenet = {
     lastName: string;
     fullName: string;
     email: string;
-    phone: string;
+    phone: number;
     apartmentId: number;
     apartmentName: string;
     complexId: number;
@@ -38,5 +38,6 @@ export type Tenet = {
     address: string;
     createdAt: string;
     modifiedAt: string;
+    landlordId: number;
     confirmationCode: string;
 }

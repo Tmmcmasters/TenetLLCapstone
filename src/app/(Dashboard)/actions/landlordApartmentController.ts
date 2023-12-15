@@ -37,7 +37,7 @@ export async function CreateApartment(apartment: Apartment) {
 }
 
 export async function GetApartmentsByLandlordId(landlordId: number) {
-    // console.log("I made it to the server side");
+    console.log("I made it to getting the apartments");
     try {
         const supabase = await createSupabaseServerCleint();
         const { data, error } = await supabase

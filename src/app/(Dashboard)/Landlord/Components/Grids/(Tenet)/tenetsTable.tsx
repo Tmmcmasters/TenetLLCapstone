@@ -124,7 +124,7 @@ export default function TenetsTable({
                     value={filterValue}
                     onValueChange={(value) => onSearchChange(value)}
                 />
-                <AddTenetButton />
+                <AddTenetButton GetTenets={GetTenets} landlordId={landlordId}/>
             </div>
 
             {
