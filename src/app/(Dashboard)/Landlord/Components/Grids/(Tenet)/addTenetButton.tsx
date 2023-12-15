@@ -290,8 +290,8 @@ export default function AddTenetButton(
                                                     </AccordionItem>
                                                     <AccordionItem key="2" aria-label="Change Tenant Details" title="Tenant Details" className="w-full" subtitle="Press to expand">
                                                         <div className="flex flex-col justify-between align-middle ">
-                                                            <p className="text-primary"><span className="font-bold text-default-500">Apartment: </span>{apartmentName}</p>
-                                                            <p className="text-primary"><span className="font-bold text-default-500">Complex: </span>{complexName}</p>
+                                                            <p className="text-primary"><span className=" text-default-500">Apartment: </span>{apartmentName}</p>
+                                                            <p className="text-primary"><span className=" text-default-500">Complex: </span>{complexName}</p>
                                                         </div>
                                                         <Spacer y={2} />
                                                         <Input
