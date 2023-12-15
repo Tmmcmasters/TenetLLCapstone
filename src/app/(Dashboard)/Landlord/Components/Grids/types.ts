@@ -38,4 +38,5 @@ export type Tenet = {
     address: string;
     createdAt: string;
     modifiedAt: string;
+    confirmationCode: string;
 }

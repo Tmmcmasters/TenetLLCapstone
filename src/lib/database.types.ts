@@ -235,6 +235,7 @@ export interface Database {
       tenet: {
         Row: {
           apartmentId: number | null
+          confirmationCode: string | null
           created_at: string
           email: string | null
           firstName: string | null
@@ -245,6 +246,7 @@ export interface Database {
         }
         Insert: {
           apartmentId?: number | null
+          confirmationCode?: string | null
           created_at?: string
           email?: string | null
           firstName?: string | null
@@ -255,6 +257,7 @@ export interface Database {
         }
         Update: {
           apartmentId?: number | null
+          confirmationCode?: string | null
           created_at?: string
           email?: string | null
           firstName?: string | null
