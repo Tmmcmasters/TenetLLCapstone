@@ -1,7 +1,6 @@
 import DashboardTickets from "../../Components/dashTickets";
 import NotificationBar from "../../Components/notificationBar";
 import { useEffect, useState } from "react";
-import { User } from "@supabase/auth-helpers-nextjs";
 import createSupabaseServerCleint from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
