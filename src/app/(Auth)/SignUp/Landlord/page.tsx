@@ -4,7 +4,6 @@ import { Button, Input, Link, Spacer } from "@nextui-org/react";
 import PasswordBox from "./components/passwordBox/PasswordBox";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { User, createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 
 import type { Database } from "@/lib/database.types";
@@ -17,6 +16,7 @@ import LandlordDashboardNav from "@/app/(Dashboard)/Landlord/Dashboard/[landlord
 import { signOut, signUpWithEmailaAndPassword } from "../../(actions)";
 
 import getUserSession from "../../(actions)";
+import { User } from "@supabase/supabase-js";
 export default function LandlordSignUp() {
     const router = useRouter();
     const [email, setEmail] = useState("");
