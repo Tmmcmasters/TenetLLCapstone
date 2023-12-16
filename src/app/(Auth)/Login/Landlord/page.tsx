@@ -3,7 +3,6 @@ import { Input, Spacer, Button, Link } from "@nextui-org/react";
 import PasswordBox from "./PasswordBox";
 import { useRouter } from "next/navigation";
 import { Database } from "@/lib/database.types";
-import { User } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
@@ -11,6 +10,7 @@ import toast from "react-hot-toast";
 import getUserSession, { signInWithEmailAndPassword, signOut } from "../../(actions)";
 import { GetLandlordByUserId } from "../../(actions)/landlordController";
 import { Landlord } from "@/lib/types";
+import { User } from "@supabase/supabase-js";
 
 export default function LandlordLogin() {
     const [email, setEmail] = useState('')
