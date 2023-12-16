@@ -10,6 +10,7 @@ import EditTenetbutton from "./editTenetButton";
 import DeleteTenetButton from "./deleteTenetButton";
 import AddTenetButton from "./addTenetButton";
 import { GetTenetsByLandlordId } from "@/app/(Dashboard)/actions/landlordTenetController";
+import ViewTenetButton from "./viewTenetButton";
 
 
 
@@ -79,11 +80,7 @@ export default function TenetsTable({
             case "actions":
                 return (
                     <div className="relative flex items-center gap-2">
-                        <Tooltip content="More Info">
-                            <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                                <EyeIcon />
-                            </span>
-                        </Tooltip>
+                        <ViewTenetButton tenetRow={item}/>
                         <EditTenetbutton tenetRow={item} GetTenets={GetTenets} landlordId={landlordId}/>
                         <DeleteTenetButton tenetRow={item} GetTenets={GetTenets}/>
                     </div>
