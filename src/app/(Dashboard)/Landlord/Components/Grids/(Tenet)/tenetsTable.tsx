@@ -79,12 +79,12 @@ export default function TenetsTable({
             case "actions":
                 return (
                     <div className="relative flex items-center gap-2">
-                        {/* <Tooltip content="View Tenets">
+                        <Tooltip content="More Info">
                             <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                                 <EyeIcon />
                             </span>
-                        </Tooltip> */}
-                        <EditTenetbutton tenetRow={item} />
+                        </Tooltip>
+                        <EditTenetbutton tenetRow={item} GetTenets={GetTenets} landlordId={landlordId}/>
                         <DeleteTenetButton tenetRow={item} GetTenets={GetTenets}/>
                     </div>
                 );

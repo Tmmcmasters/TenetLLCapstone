@@ -82,6 +82,7 @@ export async function CreateTenet(tenet: Tenet) {
 }
 
 export async function UpdateTenetByTenetId(tenet: Tenet) {
+    console.log("I made it to the server")
     return new Promise(async (resolve, reject) => {
         try {
             const supabase = await createSupabaseServerCleint();
@@ -95,8 +96,13 @@ export async function UpdateTenetByTenetId(tenet: Tenet) {
                         email: tenet.email,
                         phone: tenet.phone,
                         apartmentId: tenet.apartmentId,
+                        apartmentName: tenet.apartmentName,
                         complexId: tenet.complexId,
-                        address: tenet.address
+                        complexName: tenet.complexName,
+                        landlordId: tenet.landlordId,
+                        address: tenet.address,
+                        confirmationCode: tenet.confirmationCode,
+                        modified_at: new Date().toISOString()
                     },
                 ])
                 .eq('id', tenet.id);
