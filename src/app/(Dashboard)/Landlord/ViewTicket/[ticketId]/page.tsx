@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import TicketChatBox from "../Components/viewTicketChatBox";
+import TicketChatBox from "../../Components/viewTicketChatBox";
 
 
 export default function ViewTicket() {

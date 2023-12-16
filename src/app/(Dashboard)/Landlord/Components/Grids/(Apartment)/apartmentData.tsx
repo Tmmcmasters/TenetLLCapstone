@@ -1,7 +1,12 @@
 const columns = [
+    // {
+    //     key: "id",
+    //     name: "ID",
+    //     sortable: true,
+    // },
     {
-        key: "id",
-        name: "ID",
+        key: "apartmentNumber",
+        name: "NUMBER",
         sortable: true,
     },
     {
@@ -54,7 +59,7 @@ const apartments = [
         modifiedAt: "2022-02-15",
     },
     {
-        id: 2,
+        id: 20,
         complexId: 10, 
         complexName: "Complex 10",
         name: "Apartment 20",

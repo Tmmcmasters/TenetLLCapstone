@@ -1,9 +1,63 @@
+"use client";
+
 import { Button, Checkbox, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Textarea, useDisclosure } from "@nextui-org/react";
 import { PlusIcon } from "../../Icons/PlusIcon";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import CreateApartmentComplex from "@/app/(Dashboard)/actions/landlordComplexController";
 
 
-export default function AddComplexButton () {
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+export default function AddComplexButton(
+    {
+        landlordId,
+        getComplexes
+    }: {
+        landlordId: number,
+        getComplexes: () => void
+    }
+) {
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+    const [complexName, setComplexName] = useState("")
+    const [address, setAddress] = useState("")
+    const [description, setDescription] = useState("")
+    const [addAnother, setAddAnother] = useState(false)
+
+    
+
+    async function SaveApartmentComplex() {
+        const successManage = () => {
+            if (addAnother) {
+                setComplexName("")
+                setAddress("")
+                setDescription("")
+                getComplexes();
+                return <b>Saved Complex</b>
+            }
+            onClose()
+            setComplexName("")
+            setAddress("")
+            setDescription("")
+            getComplexes();
+            return <b>Saved Complex</b>
+        }
+
+        toast.promise(CreateApartmentComplex({
+            name: complexName,
+            address: address,
+            description: description,
+            id: 0,
+            createdAt: "",
+            modifiedAt: "",
+            landlordId: landlordId
+        }), {
+            loading: 'Saving...',
+            success: successManage,
+            error: <b>Could not save Complex</b>,
+        });
+        
+    }
+
+    
 
 
     return (
@@ -17,56 +71,62 @@ export default function AddComplexButton () {
                 <ModalContent>
                     {(onClose) => (
                         <>
-                        <ModalHeader className="flex flex-col gap-1">Add Complex</ModalHeader><ModalBody>
-                            <Input
-                                autoFocus
-                                label="Complex Name"
-                                placeholder="Enter complex name"
-                                variant="bordered"
-                                required
-                            />
-                            <Input
-                                label="Address"
-                                type="address"
-                                placeholder="Enter address"
-                                variant="bordered"
-                                required
-                            />
-                            <Textarea
-                                label="Description"
-                                placeholder="Enter description"
-                                variant="bordered"
-                                required
-                            />
-                            <div className="flex flex-row justify-start">
-                            <Checkbox size="md">Add Another</Checkbox>
-                            </div>
-                        </ModalBody>
-                        <ModalFooter className="w-full flex justify-between">
-                            <div >
-                                <Button
-                                    size="md"
+                            <ModalHeader className="flex flex-col gap-1">Add Complex</ModalHeader><ModalBody>
+                                <Input
+                                    autoFocus
+                                    label="Complex Name"
+                                    placeholder="Enter complex name"
                                     variant="bordered"
-                                    color="warning"
-                                    onPress={onClose}
-                                >
-                                    Cancel
-                                </Button>
+                                    onChange={(e) => setComplexName(e.target.value)}
+                                    isRequired
+                                    value={complexName}
+                                />
+                                <Input
+                                    label="Address"
+                                    type="address"
+                                    placeholder="Enter address"
+                                    variant="bordered"
+                                    isRequired
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    value={address}
+                                />
+                                <Textarea
+                                    label="Description"
+                                    placeholder="Enter description"
+                                    variant="bordered"
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    value={description}
+
+                                />
+                                <div className="flex flex-row justify-start">
+                                    <Checkbox size="md" onChange={(e) => setAddAnother(e.target.checked)} isSelected={addAnother}>Add Another</Checkbox>
+                                </div>
+                            </ModalBody>
+                            <ModalFooter className="w-full flex justify-between">
+                                <div >
+                                    <Button
+                                        size="md"
+                                        variant="bordered"
+                                        color="warning"
+                                        onPress={onClose}
+                                    >
+                                        Cancel
+                                    </Button>
                                 </div>
                                 <div className="flex flex-row gap-1">
-                                <Button
-                                    size="md"
-                                    color="success"
-                                    variant="ghost"
-                                    onPress={onClose}
-                                >
-                                    Save
-                                </Button>
+                                    <Button
+                                        size="md"
+                                        color="success"
+                                        variant="ghost"
+                                        onPress={SaveApartmentComplex}
+                                    >
+                                        Save
+                                    </Button>
                                 </div>
-                        </ModalFooter>
+                            </ModalFooter>
                         </>
                     )
-                    
+
                     }
                 </ModalContent>
 
