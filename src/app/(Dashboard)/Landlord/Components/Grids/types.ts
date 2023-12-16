@@ -7,11 +7,15 @@ export type Complex = {
     description: string;
     createdAt: string;
     modifiedAt: string;
+    landlordId?: number;
 }
 
 export type Apartment = {
     id: number;
     complexId: number;
+    complexNumber?: number;
+    apartmentNumber?: number;
+    landlordId?: number;
     complexName: string;
     name: string;
     address: string;
@@ -26,7 +30,7 @@ export type Tenet = {
     lastName: string;
     fullName: string;
     email: string;
-    phone: string;
+    phone: number;
     apartmentId: number;
     apartmentName: string;
     complexId: number;
@@ -34,4 +38,6 @@ export type Tenet = {
     address: string;
     createdAt: string;
     modifiedAt: string;
+    landlordId: number;
+    confirmationCode: string;
 }

@@ -1,14 +1,37 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Spacer, Tooltip, useDisclosure } from "@nextui-org/react";
 import { DeleteIcon } from "../../Icons/DeleteIcon";
 import { Tenet } from "../types";
+import toast from "react-hot-toast";
+import { RemoveTenetById } from "@/app/(Dashboard)/actions/landlordTenetController";
 
-interface DeleteTenetButtonProps {
-    tenetRow: Tenet;
-}
 
-export default function DeleteTenetButton (tenetRow: DeleteTenetButtonProps) {
 
-    const {isOpen, onOpen, onOpenChange} = useDisclosure(); 
+export default function DeleteTenetButton (
+    {
+        tenetRow,
+        GetTenets
+    }:
+    {
+        tenetRow: Tenet,
+        GetTenets: () => void
+    }
+) {
+
+    const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure(); 
+
+    function deleteTenet() {
+        toast.promise(RemoveTenetById(tenetRow.id), {
+            loading: 'Deleting tenet...',
+            success: afterSuccess,
+            error: <b>Could not delete tenet</b>
+        })
+    }
+
+    function afterSuccess() {
+        GetTenets();
+        onClose();
+        return "Tenet was deleted successfully"
+    }
 
     return (
         <div>
@@ -27,9 +50,9 @@ export default function DeleteTenetButton (tenetRow: DeleteTenetButtonProps) {
                     <ModalContent>
                         {(onClose) => (
                             <>
-                            <ModalHeader className="flex flex-col font-normal"><p className="text-xl">Are you sure you want to remove <span className="text-primary-600 font-semibold">{tenetRow.tenetRow.fullName}</span>?</p></ModalHeader>
+                            <ModalHeader className="flex flex-col font-normal"><p className="text-xl">Are you sure you want to remove <span className="text-primary-600 font-semibold">{tenetRow.fullName}</span>?</p></ModalHeader>
                             <ModalBody>
-                                <p className="text-lg">Deleting a tenet <span className="text-danger-500 font-bold"> removes all the links associated with {tenetRow.tenetRow.fullName}.</span></p>
+                                
                                 <p className="text-warning-500 font-semibold text-lg">This action cannot be undone.</p>
                                 <Spacer y={5} />
                             </ModalBody>
@@ -46,7 +69,7 @@ export default function DeleteTenetButton (tenetRow: DeleteTenetButtonProps) {
                                     size="md"
                                     color="danger"
                                     variant="solid"
-                                    onPress={onClose}
+                                    onPress={deleteTenet}
                                 >
                                     DELETE
                                 </Button>

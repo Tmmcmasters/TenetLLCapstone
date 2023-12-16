@@ -9,11 +9,11 @@ const columns = [
         name: "Address",
         sortable: true,
     },
-    {
-        key: "email",
-        name: "Email",
-        sortable: true,
-    },
+    // {
+    //     key: "email",
+    //     name: "Email",
+    //     sortable: true,
+    // },
     {
         key: "phone",
         name: "Phone",

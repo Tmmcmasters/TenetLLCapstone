@@ -1,6 +1,8 @@
 "use client"
 import { Button, Input, Spacer } from "@nextui-org/react";
 import { useState } from "react";
+import { GetTenetByConfirmationCode } from "../../(actions)/tenetController";
+import toast from "react-hot-toast";
 
 export default function Confirmation() {
     const [code1, setCode1] = useState("");
@@ -8,6 +10,7 @@ export default function Confirmation() {
     const [code3, setCode3] = useState("");
     const [code4, setCode4] = useState("");
     const [code5, setCode5] = useState("");
+    const [fullCode, setFullCode] = useState("");
 
     const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>, codeIndex: number) => {
         const inputValue = e.target.value;
@@ -32,8 +35,27 @@ export default function Confirmation() {
         }
     };
 
-    const navigateToNextPage = () => {
-        window.location.href = "/SignUp/Tenet";
+    const navigateToNextPage = async () => {
+        setFullCode(`${code1}${code2}${code3}${code4}${code5}`);
+
+        const response = await GetTenetByConfirmationCode(fullCode);
+        const result = JSON.parse(response);
+
+        setTimeout(() => {
+            
+            console.log(response)
+            if (result.status === "error") {
+                toast.error(result.message);
+                return;
+            } else if (result.length == 0) {
+                toast.error("Invalid confirmation code. Please try again.");
+                return;
+            } else {
+                toast.success("Code Verified. Redirecting to next page...");
+                window.location.href = "/SignUp/Tenet/" + fullCode;
+            }
+        }, 500)
+            
     }
 
     return (

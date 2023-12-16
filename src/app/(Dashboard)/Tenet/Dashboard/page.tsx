@@ -1,4 +1,4 @@
-import DashboardTickets from "../Components/dashTickets";
+import DashboardTickets from "../Components/(Dashboard)/dashTickets";
 import NotificationBar from "../Components/notificationBar";
 
 export default function LandlordDashboard() {
